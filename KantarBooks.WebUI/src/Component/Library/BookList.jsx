@@ -4,16 +4,13 @@ import SearchBar from "./SearchBar";
 import { Button, Col, Container, Row } from "react-bootstrap";
 
 const BookList = ({Books, OnCreateBookClick, BookItemActions}) => {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [filterOptions, setFilterOptions] = useState({
-    publisher: false,
-    author: false,
-    name: true,
-    exact: false,
-  });
+  const filterOptions = ["title", "author"]
 
-  const updateFilterCallback = (filterOptions) =>{
-    setFilterOptions(filterOptions);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filterAttribute, setFilterAttribute] = useState("title");
+
+  const updateFilterCallback = (attribute) =>{
+    setFilterAttribute(attribute);
   }
 
   const updateSearchCallback = (searchTerm) => {
@@ -21,23 +18,20 @@ const BookList = ({Books, OnCreateBookClick, BookItemActions}) => {
   }
 
 
-  const matchAuthor = (book) => {
-    return book.author.name.includes(searchTerm);
-  }
-
-  const matchTitle = (book) => {
-    return book.name.includes(searchTerm);
-  }
-
   const filterResult = (book) => {
-    return matchAuthor(book) || matchTitle(book)
+    console.log(book);
+    console.log(filterAttribute);
+    console.log(searchTerm);
+    return book[filterAttribute].includes(searchTerm);
   }
+
+  console.log(filterAttribute);
 
   return(
     <div>
       <Container>
         <Row>
-          <Col xs={10}>
+          <Col xs={10} className="ps-0">
             <SearchBar
               FilterOptions = {filterOptions}
               FilterCallback = {updateFilterCallback}
