@@ -1,0 +1,32 @@
+{
+  "AgentConfig": {
+    "Authors": [
+      {
+        "Code": "KBA000001",
+        "Name": "Ryan Holiday"
+      },
+      {
+        "Code": "KBA000002",
+        "Name": "Arnold Mindell"
+      },
+      {
+        "Code": "KBA000003",
+        "Name": "Alice A. Bailey"
+      }
+    ],
+    "Publishers": [
+      {
+        "Code": "KBP000001",
+        "Name": "Profile Books"
+      },
+      {
+        "Code": "KBP000002",
+        "Name": "Quest Books"
+      },
+      {
+        "Code": "KBP000003",
+        "Name": "Lucis Publishing Companies"
+      }
+    ]
+  }
+}

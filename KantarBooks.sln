@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KantarBooks.DataServer", "KantarBooks.DataServer\KantarBooks.DataServer.csproj", "{23A42C81-0DDF-4C28-A827-BCFEA7096293}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KantarBooks.DataServer.UnitTest", "KantarBooks.DataServer.UnitTest\KantarBooks.DataServer.UnitTest.csproj", "{F282F509-E98F-478E-8C0B-2429BA1281E6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{23A42C81-0DDF-4C28-A827-BCFEA7096293}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23A42C81-0DDF-4C28-A827-BCFEA7096293}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23A42C81-0DDF-4C28-A827-BCFEA7096293}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23A42C81-0DDF-4C28-A827-BCFEA7096293}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F282F509-E98F-478E-8C0B-2429BA1281E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F282F509-E98F-478E-8C0B-2429BA1281E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F282F509-E98F-478E-8C0B-2429BA1281E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F282F509-E98F-478E-8C0B-2429BA1281E6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

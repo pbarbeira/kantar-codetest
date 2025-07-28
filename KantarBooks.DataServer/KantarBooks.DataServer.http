@@ -1,0 +1,6 @@
+@KantarBooks.DataServer_HostAddress = http://localhost:5249
+
+GET {{KantarBooks.DataServer_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
