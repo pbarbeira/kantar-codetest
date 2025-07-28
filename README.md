@@ -2,15 +2,6 @@
 
 This repository contains the implementation for the coding challenge asked for Kantar's interview process, a library system management application.
 
-## Features
-* List all Books
-* Filter by Title, Author
-* Add a new Book
-* Update a Book - not allowed if the book is borrowed
-* Delete a Book - not allowed if the book is borrowed
-* Borrow a Book
-* Deliver a Book
-
 # Installation
 * Clone repository or download .zip
 * Navigate to **KantarBooks.sln** directory
@@ -19,6 +10,15 @@ This repository contains the implementation for the coding challenge asked for K
 
 Docker compose will build and instantiate three containers, running a SqlServer Database, the DataServer, and the WebUI.
 The database is populated using .sql scripts contained in the Scripts folder and Docker's command line capabilities.
+
+## Features
+* List all Books
+* Filter by Title, Author
+* Add a new Book
+* Update a Book - not allowed if the book is borrowed
+* Delete a Book - not allowed if the book is borrowed
+* Borrow a Book
+* Deliver a Book
 
 ## Ports
 The system uses the following ports:
