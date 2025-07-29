@@ -4,7 +4,7 @@ import { MdSearch } from "react-icons/md";
 
 const SearchBar = ({FilterOptions, FilterCallback, SearchCallback}) => {
   const [input, setInput] = useState("");
-  const [filter, setFilter] = useState("name");
+  const [filter, setFilter] = useState("title");
 
   const onChangeInput = (input) => {
     SearchCallback(input);
