@@ -17,13 +17,13 @@ public class BookDto {
     /// <summary>
     /// The book's author.
     /// </summary>
-    public Author Author { get; set; } = new Author();
+    public Author Author { get; set; } = new();
     
     /// <summary>
     /// The book's publisher.
     /// </summary>
-    public Publisher Publisher { get; set; } = new Publisher();
-    
+    public Publisher Publisher { get; set; } = new();
+
     /// <summary>
     /// Indicates if the book has been borrowed.
     /// </summary>

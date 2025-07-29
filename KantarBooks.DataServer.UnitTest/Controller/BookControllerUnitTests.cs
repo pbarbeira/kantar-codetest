@@ -29,7 +29,58 @@ public class BookControllerUnitTests {
         Assert.IsNotNull(result);
         Assert.AreEqual(2, result.Count);
     }
+    
+    /// <summary>
+    /// Tests whether AddOrUpdateBook API returns 200 when service executes smoothly.
+    /// </summary>
+    [TestMethod]
+    public void AddOrUpdateBook_BadRequestNoTitle_Test() {
+        var mockBook = TestUtils.BuildMockDto(false);
+        var mockService = new Mock<IBookService>();
+        mockBook.Title = "";
+        
+        mockService.Setup(x => x.AddOrUpdateBook(It.IsAny<BookDto>()))
+            .Returns(mockBook);
+        var controller = new BookController(mockService.Object);
+        
+        var badRequestResult = controller.AddOrUpdateBook(mockBook) as BadRequestObjectResult;
+        Assert.IsNotNull(badRequestResult);
+    }
 
+    /// <summary>
+    /// Tests whether AddOrUpdateBook API returns 200 when service executes smoothly.
+    /// </summary>
+    [TestMethod]
+    public void AddOrUpdateBook_BadRequestNoAuthor_Test() {
+        var mockBook = TestUtils.BuildMockDto(false);
+        var mockService = new Mock<IBookService>();
+        mockBook.Author = new();
+        
+        mockService.Setup(x => x.AddOrUpdateBook(It.IsAny<BookDto>()))
+            .Returns(mockBook);
+        var controller = new BookController(mockService.Object);
+        
+        var badRequestResult = controller.AddOrUpdateBook(mockBook) as BadRequestObjectResult;
+        Assert.IsNotNull(badRequestResult);
+    }
+    
+    /// <summary>
+    /// Tests whether AddOrUpdateBook API returns 200 when service executes smoothly.
+    /// </summary>
+    [TestMethod]
+    public void AddOrUpdateBook_BadRequestNoPublisher_Test() {
+        var mockBook = TestUtils.BuildMockDto(false);
+        var mockService = new Mock<IBookService>();
+        mockBook.Publisher = new();
+        
+        mockService.Setup(x => x.AddOrUpdateBook(It.IsAny<BookDto>()))
+            .Returns(mockBook);
+        var controller = new BookController(mockService.Object);
+        
+        var badRequestResult = controller.AddOrUpdateBook(mockBook) as BadRequestObjectResult;
+        Assert.IsNotNull(badRequestResult);
+    }
+    
     /// <summary>
     /// Tests whether AddOrUpdateBook API returns 200 when service executes smoothly.
     /// </summary>
@@ -66,6 +117,18 @@ public class BookControllerUnitTests {
         Assert.IsNotNull(problemResult);
         Assert.IsNotNull(problemResult.Value);
         Assert.AreEqual(500, problemResult.StatusCode);
+    }
+
+    /// <summary>
+    /// Tests whether BorrowBook API returns 200 when service executes smoothly.
+    /// </summary>
+    [TestMethod]
+    public void BorrowBook_BadRequest_Test() {
+        var mockService = new Mock<IBookService>();
+        var controller = new BookController(mockService.Object);
+        
+        var badRequestResult = controller.BorrowBook(0) as BadRequestObjectResult;
+        Assert.IsNotNull(badRequestResult);
     }
     
     /// <summary>
@@ -107,6 +170,18 @@ public class BookControllerUnitTests {
     }
     
     /// <summary>
+    /// Tests whether DeliverBook API returns 400 when model isn't valid.
+    /// </summary>
+    [TestMethod]
+    public void DeliverBook_BadRequest_Test() {
+        var mockService = new Mock<IBookService>();
+        var controller = new BookController(mockService.Object);
+        
+        var badRequestResult = controller.DeliverBook(0) as BadRequestObjectResult;
+        Assert.IsNotNull(badRequestResult);
+    }
+    
+    /// <summary>
     /// Tests whether DeliverBook API returns 200 when service executes smoothly.
     /// </summary>
     [TestMethod]
@@ -142,6 +217,18 @@ public class BookControllerUnitTests {
         Assert.IsNotNull(problemResult);
         Assert.IsNotNull(problemResult.Value);
         Assert.AreEqual(500, problemResult.StatusCode);
+    }
+    
+    /// <summary>
+    /// Tests whether DeleteBook API returns 400 when model isn't valid.
+    /// </summary>
+    [TestMethod]
+    public void DeleteBook_BadRequest_Test() {
+        var mockService = new Mock<IBookService>();
+        var controller = new BookController(mockService.Object);
+        
+        var badRequestResult = controller.DeleteBook(0) as BadRequestObjectResult;
+        Assert.IsNotNull(badRequestResult);
     }
     
     /// <summary>

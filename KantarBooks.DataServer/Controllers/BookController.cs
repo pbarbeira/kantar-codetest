@@ -30,9 +30,18 @@ public class BookController(IBookService bookService) : Controller{
     /// code, updates said book's information.
     /// </summary>
     /// <param name="book">The BookDto with the new book information.</param>
-    /// <returns>Ok upon success</returns>
+    /// <returns>BadRequest if model is invalid, Ok upon success, 500 if error.</returns>
     [HttpPost]
     public IActionResult AddOrUpdateBook([FromBody] BookDto book) {
+        if (book.Title == "") {
+            return BadRequest("Error: A book must have a title.");
+        }
+        if (book.Author.Code == "") {
+            return BadRequest("Error: a book must have an author");
+        }
+        if (book.Publisher.Code == "") {
+            return BadRequest("Error: a book must have a publisher");
+        }
         try {
             return Ok(_bookService.AddOrUpdateBook(book));
         }
@@ -46,9 +55,12 @@ public class BookController(IBookService bookService) : Controller{
     /// the user that borrowed the book.
     /// </summary>
     /// <param name="id">The id of the book to be borrowed.</param>
-    /// <returns>Ok upon success</returns>
+    /// <returns>BadRequest if model is invalid, Ok upon success, 500 if error.</returns>
     [HttpPost("{id}/borrow")]
     public IActionResult BorrowBook([FromRoute] long id) {
+        if (id <= 0) {
+            return BadRequest("Error: internal error");
+        }
         try {
             return Ok(_bookService.BorrowBook(id));
         }
@@ -62,9 +74,12 @@ public class BookController(IBookService bookService) : Controller{
     /// book instance of the database.
     /// </summary>
     /// <param name="id">The id of the book to be returned.</param>
-    /// <returns>Ok upon success.</returns>
+    /// <returns>BadRequest if model is invalid, Ok upon success, 500 if error.</returns>
     [HttpPost("{id}/deliver")]
     public IActionResult DeliverBook([FromRoute] long id) {
+        if (id <= 0) {
+            return BadRequest("Error: internal error");
+        }
         try {
             return Ok(_bookService.DeliverBook(id));
         }
@@ -77,9 +92,12 @@ public class BookController(IBookService bookService) : Controller{
     /// Deletes a book from the system.
     /// </summary>
     /// <param name="id">The id of the book to be deleted.</param>
-    /// <returns>Ok upon success.</returns>
+    /// <returns>BadRequest if model is invalid, Ok upon success, 500 if error.</returns>
     [HttpDelete("{id}")]
     public IActionResult DeleteBook([FromRoute] long id) {
+        if (id <= 0) {
+            return BadRequest("Error: internal error");
+        }
         try {
             return Ok(_bookService.DeleteBook(id));
         }

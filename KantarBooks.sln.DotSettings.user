@@ -68,7 +68,7 @@
     &lt;TestId&gt;MSTest::F282F509-E98F-478E-8C0B-2429BA1281E6::net9.0::KantarBooks.DataServer.UnitTest.DataAccess.BookRepositoryUnitTests.GetBooks_Test&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=c3a666e6_002Dc94d_002D421f_002D89fb_002D3858f05ba88f/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="All tests from Solution" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=c3a666e6_002Dc94d_002D421f_002D89fb_002D3858f05ba88f/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="All tests from Solution" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;Project Location="/home/pbarbeira/dev/code/dotnet/KantarBooks/KantarBooks.DataServer.UnitTest" Presentation="&amp;lt;KantarBooks.DataServer.UnitTest&amp;gt;" /&gt;
 &lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=cafc3f62_002D813c_002D47f0_002Da047_002D787592aa762b/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="GetBooks_Test" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
@@ -76,7 +76,7 @@
     &lt;TestId&gt;MSTest::F282F509-E98F-478E-8C0B-2429BA1281E6::net9.0::KantarBooks.DataServer.UnitTest.DataAccess.BookRepositoryUnitTests.GetBooks_Test&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=fff254b4_002D9926_002D45b4_002Db807_002D8e11aa56a9e9/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="GetBooks_Test #4" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=fff254b4_002D9926_002D45b4_002Db807_002D8e11aa56a9e9/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="GetBooks_Test #4" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;TestAncestor&gt;
     &lt;TestId&gt;MSTest::F282F509-E98F-478E-8C0B-2429BA1281E6::net9.0::KantarBooks.DataServer.UnitTest.DataAccess.BookRepositoryUnitTests.GetBooks_Test&lt;/TestId&gt;
     &lt;TestId&gt;MSTest::F282F509-E98F-478E-8C0B-2429BA1281E6::net9.0::KantarBooks.DataServer.UnitTest.Service.AgentServiceUnitTests.GetAgents_Test&lt;/TestId&gt;
@@ -87,5 +87,7 @@
     &lt;TestId&gt;MSTest::F282F509-E98F-478E-8C0B-2429BA1281E6::net9.0::KantarBooks.DataServer.UnitTest.DataAccess.BookRepositoryUnitTests&lt;/TestId&gt;
     &lt;TestId&gt;MSTest::F282F509-E98F-478E-8C0B-2429BA1281E6::net9.0::KantarBooks.DataServer.UnitTest.Data.BookRepositoryUnitTests.GetBooks_Test&lt;/TestId&gt;
     &lt;TestId&gt;MSTest::F282F509-E98F-478E-8C0B-2429BA1281E6::net9.0::KantarBooks.DataServer.UnitTest.Data.BookRepositoryUnitTests&lt;/TestId&gt;
+    &lt;TestId&gt;MSTest::F282F509-E98F-478E-8C0B-2429BA1281E6::net9.0::KantarBooks.DataServer.UnitTest.Controller.BookControllerUnitTests.BorrowBook_BadRequest_Test&lt;/TestId&gt;
+    &lt;TestId&gt;MSTest::F282F509-E98F-478E-8C0B-2429BA1281E6::net9.0::KantarBooks.DataServer.UnitTest.Controller.BookControllerUnitTests&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
