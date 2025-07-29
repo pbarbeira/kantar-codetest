@@ -22,7 +22,6 @@ public class BookController(IBookService bookService) : Controller{
     /// </summary>
     /// <returns>Ok upon success</returns>
     [HttpGet]
-    [Authorize]
     public IActionResult GetAll() {
         return Ok(_bookService.GetBooks());
     }
@@ -34,7 +33,6 @@ public class BookController(IBookService bookService) : Controller{
     /// <param name="book">The BookDto with the new book information.</param>
     /// <returns>Ok upon success</returns>
     [HttpPost]
-    [Authorize]
     public IActionResult AddOrUpdateBook([FromBody] BookDto book) {
         try {
             return Ok(_bookService.AddOrUpdateBook(book));
@@ -51,7 +49,6 @@ public class BookController(IBookService bookService) : Controller{
     /// <param name="id">The id of the book to be borrowed.</param>
     /// <returns>Ok upon success</returns>
     [HttpPost("{id}/borrow")]
-    [Authorize]
     public IActionResult BorrowBook([FromRoute] long id) {
         try {
             return Ok(_bookService.BorrowBook(id));
@@ -68,7 +65,6 @@ public class BookController(IBookService bookService) : Controller{
     /// <param name="id">The id of the book to be returned.</param>
     /// <returns>Ok upon success.</returns>
     [HttpPost("{id}/deliver")]
-    [Authorize]
     public IActionResult DeliverBook([FromRoute] long id) {
         try {
             return Ok(_bookService.DeliverBook(id));
@@ -84,7 +80,6 @@ public class BookController(IBookService bookService) : Controller{
     /// <param name="id">The id of the book to be deleted.</param>
     /// <returns>Ok upon success.</returns>
     [HttpDelete("{id}")]
-    [Authorize]
     public IActionResult DeleteBook([FromRoute] long id) {
         try {
             var result = _bookService.DeleteBook(id);
