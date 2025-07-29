@@ -1,4 +1,5 @@
 using KantarBooks.DataServer.Service;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KantarBooks.DataServer.Controllers;
@@ -20,6 +21,7 @@ public class AgentController(IAgentService agentService) : Controller {
     /// </summary>
     /// <returns>Ok upon success</returns>
     [HttpGet]
+    [Authorize]
     public IActionResult GetAgents() {
         return Ok(_agentService.GetAgents());
     }
