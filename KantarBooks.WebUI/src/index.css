@@ -107,3 +107,9 @@ html, body, #root {
   display: flex;
   flex-direction: column;
 }
+
+.book-modal-error{
+  color: darkred;
+  font-size: small;
+  text-align: end;
+}

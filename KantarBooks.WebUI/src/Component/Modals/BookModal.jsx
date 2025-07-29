@@ -9,6 +9,11 @@ const BookModal = ({Show, Title, FormData, OnSaveClick, OnHide}) => {
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState({});
   const [publisher, setPublisher] = useState({});
+  const [errorFlags, setErrorFlags] = useState({
+    title: false,
+    author: false,
+    publisher: false
+  });
 
   useEffect(() => {
     if(FormData){
@@ -16,24 +21,58 @@ const BookModal = ({Show, Title, FormData, OnSaveClick, OnHide}) => {
       setTitle(FormData.Title || "");
       setAuthor(FormData.Author || {});
       setPublisher(FormData.Publisher || {});
+      resetFlags();
     }
   }, [FormData]);
 
   const onNameChange = (name) => {
+    setErrorFlags(flags => ({
+      ...flags,
+      title: false
+    }));
     setTitle(name);
   }
 
   const onAuthorChange = (authorIdx) => {
     const author = authors[authorIdx];
+    setErrorFlags(flags => ({
+      ...flags,
+      author: false
+    }));
     setAuthor(author);
   }
 
   const onPublisherChange = (publisherIdx) => {
     const publisher = publishers[publisherIdx];
+    setErrorFlags(flags => ({
+      ...flags,
+      publisher: false
+    }));
     setPublisher(publisher);
   }
 
+  const checkFlags = (flags) => {
+    return flags.title || flags.author || flags.publisher;
+  }
+
+  const resetFlags = () => {
+    setErrorFlags({
+      title: false,
+      author: false,
+      publisher: false
+    })
+  }
+
   const onSave = () =>{
+    const flags = {
+      title: title === "",
+      author: Object.keys(author).length === 0,
+      publisher: Object.keys(publisher).length === 0 
+    }
+    if(checkFlags(flags)){
+      setErrorFlags(flags);
+      return;
+    }
     const form = {
       Id: id,
       Title: title,
@@ -56,12 +95,17 @@ const BookModal = ({Show, Title, FormData, OnSaveClick, OnHide}) => {
         <Modal.Body>
           <Form>
             <Form.Group controlId="book-modal-name" className="pt-3">
-              <Form.Label className="m-1">Book Name:</Form.Label>
+              <Form.Label className="m-1">Book Title:</Form.Label>
               <Form.Control type="text"
-                placeholder="Enter book name"
+                placeholder="Enter book title"
                 value={title}
                 onChange={(e)=>{ onNameChange(e.target.value) }} 
               />
+              {errorFlags.title ? 
+                <div className="book-modal-error">
+                  Book must have a title!
+                </div>
+              : <></>}
             </Form.Group>
           
             <Form.Group controlId="book-modal-author" className="pt-3">
@@ -75,6 +119,11 @@ const BookModal = ({Show, Title, FormData, OnSaveClick, OnHide}) => {
                   <option key={`author-option-${idx}`} value={idx}>{author.name}</option>
                 ))}
               </Form.Select>
+              {errorFlags.author ? 
+                <div className="book-modal-error">
+                  Book must have an author!
+                </div>
+              : <></>}
             </Form.Group>
 
             <Form.Group controlId="book-modal-publisher" className="pt-3">
@@ -88,6 +137,11 @@ const BookModal = ({Show, Title, FormData, OnSaveClick, OnHide}) => {
                     <option key={`publisher-option-${idx}`} value={idx}>{publisher.name}</option>
                   ))}
                 </Form.Select>
+              {errorFlags.publisher ? 
+                <div className="book-modal-error">
+                  Book must have a publisher!
+                </div>
+              : <></>}
             </Form.Group>
           </Form>
         </Modal.Body>
