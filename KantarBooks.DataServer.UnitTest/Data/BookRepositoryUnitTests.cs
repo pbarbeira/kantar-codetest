@@ -1,14 +1,31 @@
 using KantarBooks.DataServer.Data;
 using KantarBooks.DataServer.Models;
+using Microsoft.Data.SqlClient;
+using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 
 namespace KantarBooks.DataServer.UnitTest.Data;
-
 /// <summary>
 /// Unit Tests for the BookRepository service.
 /// </summary>
 [TestClass]
 public class BookRepositoryUnitTests {
+    
+    [TestInitialize]
+    public void Init()
+    {
+        var basePath = AppDomain.CurrentDomain.BaseDirectory;
+        var connString = $"Data Source={Path.Combine(basePath, "testdb.sqlite")};";
+        var sqlScript = File.ReadAllText("Scripts/init.sql");
+
+        using var connection = new SqliteConnection(connString);
+        connection.Open();
+
+        using var command = new SqliteCommand(sqlScript, connection);
+        command.ExecuteNonQuery();
+        
+        connection.Close();
+    }
 
     /// <summary>
     /// Tests whether the GetBooks method returns the three books stored in
@@ -46,9 +63,6 @@ public class BookRepositoryUnitTests {
         
         var result = repository.AddOrUpdateBook(book);
         Assert.IsNotNull(result);
-        
-        result = repository.DeleteBook(4);
-        Assert.IsNotNull(result );
     }
 
     [TestMethod]
@@ -61,10 +75,6 @@ public class BookRepositoryUnitTests {
         Assert.IsNotNull(result);
         Assert.AreEqual(3, result.Id);
         Assert.AreEqual("KBA2", result.AuthorCode);
-        
-        result.AuthorCode = "KBA3";
-        result = repository.AddOrUpdateBook(result);
-        Assert.IsNotNull(result);
     }
     
   
@@ -81,10 +91,6 @@ public class BookRepositoryUnitTests {
         var repository = BuildRepository();
 
         var result = repository.DeleteBook(1);
-        Assert.IsNotNull(result);
-
-        result.Id = 1;
-        result = repository.AddOrUpdateBook(result);
         Assert.IsNotNull(result);
     }
     
