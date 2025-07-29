@@ -37,3 +37,15 @@ The application uses the following stack:
 * **Other** - Swagger, Docker
 
 # Tests
+The project includes unit tests for the following modules:
+* BookRepository
+* BookService
+* AgentService
+* TypeConverter
+* BookController
+* AgentController
+
+The testing framework used was MSTest, with Moq for mocking interfaces when needed.
+The test suite for BookRepository uses a local sqlite3 database. It resets the database to test default each run.
+
+To run the tests, navigate to the solution folder and run `dotnet test`
