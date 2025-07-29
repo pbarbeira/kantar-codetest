@@ -5,7 +5,7 @@ namespace KantarBooks.DataServer.Data.Repository;
 /// <summary>
 /// Handles operations and bookkeeping related to Book objects.
 /// </summary>
-public class BookRepository(KantarBooksContext context) : IDisposable, IAsyncDisposable {
+public class BookRepository(KantarBooksContext context) : IBookRepository, IDisposable, IAsyncDisposable {
     private KantarBooksContext _context => context;
     
     public IEnumerable<Book> GetBooks() {
