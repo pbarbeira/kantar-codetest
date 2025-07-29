@@ -43,7 +43,7 @@ const LibraryDashboard = () =>{
   const updateBookList = (book, 
     notFoundCallback = ()=>{ throw new Error(`Error: book does not exit!`) }
   ) => {
-    const idx = bookList.findIndex(x => x.code === book.code);
+    const idx = bookList.findIndex(x => x.id === book.id);
     if(idx !== -1){
       bookList[idx] = book;
     }else{
@@ -53,19 +53,20 @@ const LibraryDashboard = () =>{
   }
 
   const onBookSaveClick = (book) => {
+    console.log(book);
     BookCmd.SaveBook(book,
       (result) => {
         updateBookList(result, 
           () => bookList.push(result)
         )
-        setSuccessMessage("Book was successfully saved!");
+        setSuccessMessage(book.Id === 0 ? "Book was successfully created!" : "Book was successfully updated!");
       }, 
       (e) => setFailureMessage(`There was an error saving the book: ${e.message}`)
     );
   }
 
-  const onBorrowSaveClick = (bookCode, userCode) => {
-    BookCmd.BorrowBook(bookCode, userCode, 
+  const onBorrowSaveClick = (bookId) => {
+    BookCmd.BorrowBook(bookId, 
       (result) => {
         updateBookList(result)
         setSuccessMessage("Book was successfully borrowed!");
@@ -74,20 +75,20 @@ const LibraryDashboard = () =>{
     )
   }
 
-  const onDeliverSaveClick = (bookCode, userCode) => {
-    BookCmd.DeliverBook(bookCode, userCode, 
+  const onDeliverSaveClick = (bookId) => {
+    BookCmd.DeliverBook(bookId, 
       (result) => {
         updateBookList(result)
         setSuccessMessage("Book was successfully borrowed!");
       }, 
-      (e) => setFailureMessage(`There was an error borrowing the book: ${e.message}`)
+      (e) => setFailureMessage(`There was an error delivering the book: ${e.message}`)
     )
   }
 
-  const onDeleteSaveClick = (bookCode) => {
-    BookCmd.DeleteBook(bookCode, 
+  const onDeleteSaveClick = (bookId) => {
+    BookCmd.DeleteBook(bookId, 
       (result) => {
-        setBookList([...bookList.filter(x => x.code !== result)]);
+        setBookList([...bookList.filter(x => x.id !== bookId)]);
         setSuccessMessage("Book was successfully deleted!");
       },
       (e) => {
@@ -99,10 +100,9 @@ const LibraryDashboard = () =>{
     setForm({
       Id: 0,
       Title: "",
-      Code: "",
       Author: {},
       Publisher: {},
-      Borrower: ""
+      Borrowed: false
     });
     setShow(BOOK_MODAL);
   }
@@ -112,9 +112,9 @@ const LibraryDashboard = () =>{
     setForm({
       Id: book.id,
       Title: book.title,
-      Code: book.code,
       Author: book.author,
-      Publisher: book.publisher
+      Publisher: book.publisher,
+      Borrowed: book.borrowed
     });
   }
 
@@ -122,16 +122,15 @@ const LibraryDashboard = () =>{
     setForm({
       Id: book.id,
       Title: book.title,
-      BookCode: book.code,
-      Borrower: book.borrower !== undefined ? book.borrower.code : ""
+      Borrowed: book.borrowed
     })
     setShow(BORROW_MODAL);
   }
 
   const onDeleteBookClick = (book) =>{
     setForm({
-      Code: book.code,
-      Borrower: ""
+      Id: book.id,
+      Borrowed: false
     })
     setShow(DELETE_MODAL);
   }
@@ -155,7 +154,7 @@ const LibraryDashboard = () =>{
         <BookModal 
           Show={show === BOOK_MODAL}
           FormData={form}
-          Title={form.Name === '' ? 'Create Book' : 'Update Book'}
+          Title={form.Title === '' ? 'Create Book' : 'Update Book'}
           OnSaveClick={onBookSaveClick}
           OnHide={onModalClose}
         />
@@ -168,7 +167,7 @@ const LibraryDashboard = () =>{
         />
         <DeleteModal 
           Show={show === DELETE_MODAL}
-          Code={form.Code}
+          Id={form.Id }
           OnDeleteClick={onDeleteSaveClick}
           OnHide={onModalClose}
         />

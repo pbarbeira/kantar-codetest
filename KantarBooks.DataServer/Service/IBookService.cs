@@ -22,23 +22,21 @@ public interface IBookService {
     /// <summary>
     /// Marks a book as borrowed.
     /// </summary>
-    /// <param name="bookCode">The code of the book to be marked as borrowed.</param>
-    /// <param name="userCode">The code of the user that borrowed the book.</param>
+    /// <param name="id">The id of the book to be marked as borrowed.</param>
     /// <returns>A BookDto with the result of the service operation.</returns>
-    BookDto? BorrowBook(string bookCode, string userCode);
+    BookDto? BorrowBook(long id);
     
     /// <summary>
     /// Unmarks a book as borrowed.
     /// </summary>
-    /// <param name="bookCode">The code of the book to be unmarked as borrowed.</param>
-    /// <param name="userCode">The code of the user that borrowed the book.</param>
+    /// <param name="id">The id of the book to be unmarked as borrowed.</param>
     /// <returns>A BookDto with the result of the service operation.</returns>
-    BookDto? DeliverBook(string bookCode, string userCode);
+    BookDto? DeliverBook(long id);
     
     /// <summary>
     /// Deletes a book from the system.
     /// </summary>
-    /// <param name="bookCode">The code of the book to be deleted.</param>
+    /// <param name="id">The id of the book to be deleted.</param>
     /// <returns>A BookDto with the result of the service operation.</returns>
-    BookDto? DeleteBook(string bookCode);
+    BookDto? DeleteBook(long id);
 }

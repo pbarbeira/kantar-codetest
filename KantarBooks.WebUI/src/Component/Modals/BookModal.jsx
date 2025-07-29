@@ -6,16 +6,14 @@ const BookModal = ({Show, Title, FormData, OnSaveClick, OnHide}) => {
   const {authors, publishers } = useContext(DataContext);
 
   const [id, setId] = useState(0);
-  const [code, setCode] = useState("");
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState({});
   const [publisher, setPublisher] = useState({});
 
   useEffect(() => {
     if(FormData){
-      setId(FromData.Id || 0);
+      setId(FormData.Id || 0);
       setTitle(FormData.Title || "");
-      setCode(FormData.Code || "");
       setAuthor(FormData.Author || {});
       setPublisher(FormData.Publisher || {});
     }
@@ -39,14 +37,13 @@ const BookModal = ({Show, Title, FormData, OnSaveClick, OnHide}) => {
     const form = {
       Id: id,
       Title: title,
-      Code: code,
       Author: author,
-      Publisher: publisher
+      Publisher: publisher,
+      Borrowed: false
     }
     OnHide();
     OnSaveClick(form);
-  }
-
+  } 
 
   const authorIndex = authors.findIndex(x => x.code == author.code);
   const publisherIndex = publishers.findIndex(x => x.code == publisher.code);

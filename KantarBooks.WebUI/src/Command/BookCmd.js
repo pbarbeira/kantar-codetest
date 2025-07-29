@@ -11,14 +11,14 @@ export default class BookCmd {
     .catch(e => errorCallback(e))
   }
 
-  static async BorrowBook(bookCode, userCode, successCallback, errorCallback){
-    BookAPI.BorrowBook(bookCode, userCode )
+  static async BorrowBook(bookCode, successCallback, errorCallback){
+    BookAPI.BorrowBook(bookCode)
       .then(result => successCallback(result))
       .catch(e => errorCallback(e))
   }
 
-  static async DeliverBook(bookCode, userCode, successCallback, errorCallback){
-    BookAPI.DeliverBook(bookCode, userCode)
+  static async DeliverBook(bookCode, successCallback, errorCallback){
+    BookAPI.DeliverBook(bookCode)
     .then(result => successCallback(result))
     .catch(e => errorCallback(e))
   }

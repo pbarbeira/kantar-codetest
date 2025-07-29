@@ -19,7 +19,7 @@ public interface IBookRepository : IDisposable{
     /// <param name="bookCode">The code of the book to be found.</param>
     /// <returns>The book data associated with the given code upon success, null
     /// otherwise.</returns>
-    Book? GetBookByCode(string bookCode);
+    Book? GetBookById(long id);
     
     /// <summary>
     /// Saves a book in the database.

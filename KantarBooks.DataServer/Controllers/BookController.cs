@@ -47,13 +47,12 @@ public class BookController(IBookService bookService) : Controller{
     /// Registers a book as borrowed by storing in the database the code of
     /// the user that borrowed the book.
     /// </summary>
-    /// <param name="bookCode">The code of the book to be borrowed.</param>
-    /// <param name="userCode">The user code of the borrower.</param>
+    /// <param name="id">The id of the book to be borrowed.</param>
     /// <returns>Ok upon success</returns>
-    [HttpPost("{bookId}/borrow")]
-    public IActionResult BorrowBook([FromRoute] string bookCode, [FromBody]  string userCode) {
+    [HttpPost("{id}/borrow")]
+    public IActionResult BorrowBook([FromRoute] long id) {
         try {
-            return Ok(_bookService.BorrowBook(bookCode, userCode));
+            return Ok(_bookService.BorrowBook(id));
         }
         catch (Exception e) {
             return Problem(e.Message);
@@ -64,13 +63,12 @@ public class BookController(IBookService bookService) : Controller{
     /// Registers the return of the book by removing the user code from the
     /// book instance of the database.
     /// </summary>
-    /// <param name="bookCode">The code of the book to be returned.</param>
-    /// <param name="userCode">The code of the user that returned the book.</param>
+    /// <param name="id">The id of the book to be returned.</param>
     /// <returns>Ok upon success.</returns>
-    [HttpPost("{bookId}/deliver")]
-    public IActionResult DeliverBook([FromRoute] string bookCode, [FromBody] string userCode) {
+    [HttpPost("{id}/deliver")]
+    public IActionResult DeliverBook([FromRoute] long id) {
         try {
-            return Ok(_bookService.DeliverBook(bookCode, userCode));
+            return Ok(_bookService.DeliverBook(id));
         }
         catch (Exception e) {
             return Problem(e.Message);
@@ -80,12 +78,12 @@ public class BookController(IBookService bookService) : Controller{
     /// <summary>
     /// Deletes a book from the system.
     /// </summary>
-    /// <param name="code">The code of the book to be deleted.</param>
+    /// <param name="id">The id of the book to be deleted.</param>
     /// <returns>Ok upon success.</returns>
-    [HttpDelete("{code}")]
-    public IActionResult DeleteBook([FromRoute] string code) {
+    [HttpDelete("{id}")]
+    public IActionResult DeleteBook([FromRoute] long id) {
         try {
-            var result = _bookService.DeleteBook(code);
+            var result = _bookService.DeleteBook(id);
             return Ok(result);
         }
         catch (Exception e) {

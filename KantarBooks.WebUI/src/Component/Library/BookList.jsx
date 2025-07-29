@@ -19,10 +19,10 @@ const BookList = ({Books, OnCreateBookClick, BookItemActions}) => {
 
 
   const filterResult = (book) => {
-    console.log(book);
-    console.log(filterAttribute);
-    console.log(searchTerm);
-    return book[filterAttribute].includes(searchTerm);
+    switch(filterAttribute){
+      case 'title': return book.title.includes(searchTerm);
+      case 'author': return book.author.name.includes(searchTerm);
+    }
   }
 
   return(
@@ -46,7 +46,7 @@ const BookList = ({Books, OnCreateBookClick, BookItemActions}) => {
       <div>
         <Container fluid className="border rounded booklist-container">
           <Row className='list-header padding-top-5px'>
-            <Col xs = {6} md = {3} lg={3} xl={2}><h5>Code</h5></Col>
+            <Col xs = {6} md = {3} lg={3} xl={2}><h5>#Id</h5></Col>
             <Col xs = {0} md = {6} lg={4} xl={4} className="d-none d-md-block"><h5>Name</h5></Col>
             <Col xs = {0} md = {0} lg={3} xl={2} className="d-none d-lg-block"><h5>Author</h5></Col>
             <Col xs = {0} md = {0} lg={0} xl={2} className="d-none d-xl-block"><h5>Publisher</h5></Col>

@@ -4,11 +4,10 @@ namespace KantarBooks.DataServer.Models;
 /// Book DTO. Used to pass information between the frontend and the backend.
 /// </summary>
 public class BookDto {
-    
     /// <summary>
-    /// The book's code.
+    /// The book's id.
     /// </summary>
-    public string Code { get; set; } = "";
+    public long Id { get; set; }
     
     /// <summary>
     /// The book's title.
@@ -29,9 +28,4 @@ public class BookDto {
     /// Indicates if the book has been borrowed.
     /// </summary>
     public bool Borrowed { get; set; } = false;
-    
-    /// <summary>
-    /// The book's borrower.
-    /// </summary>
-    public string Borrower { get; set; } = "";
 }

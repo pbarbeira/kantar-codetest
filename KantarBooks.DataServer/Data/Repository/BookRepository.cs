@@ -13,16 +13,20 @@ public class BookRepository(KantarBooksContext context) : IBookRepository, IDisp
         return _context.Books.ToList();
     }
 
-    public Book? GetBookByCode(string bookCode) {
-        return _context.Books.FirstOrDefault(b => b.Code == bookCode);
+    public Book? GetBookById(long id) {
+        return _context.Books.FirstOrDefault(b => b.Id == id);
     }
 
     public Book? AddOrUpdateBook(Book book) {
-        return _context.Books.Update(book).Entity;
+        var result = _context.Books.Update(book).Entity;
+        _context.SaveChanges();
+        return result;
     }
 
     public Book? DeleteBook(Book book) {
-        return _context.Remove(book).Entity;
+        var result = _context.Remove(book).Entity;
+        _context.SaveChanges();
+        return result;
     }
 
     public void Dispose() {

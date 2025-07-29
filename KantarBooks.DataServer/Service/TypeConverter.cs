@@ -18,11 +18,11 @@ public class TypeConverter {
 
     public static BookDto BookToDto(Book book) {
         return new BookDto {
-            Code = book.Code,
+            Id = book.Id,
             Title = book.Title,
             Author = book.Author,
             Publisher = book.Publisher,
-            Borrower = book.Borrower
+            Borrowed = book.Borrowed
         };
     }
     
@@ -30,11 +30,11 @@ public class TypeConverter {
 
     public static Book DtoToBook(BookDto bookDto) {
         return new Book {
-            Code = bookDto.Code,
+            Id = bookDto.Id,
             Title = bookDto.Title,
             AuthorCode = bookDto.Author.Code,
             PublisherCode = bookDto.Publisher.Code,
-            Borrower = bookDto.Borrower,
+            Borrowed = bookDto.Borrowed,
         };
     }
     

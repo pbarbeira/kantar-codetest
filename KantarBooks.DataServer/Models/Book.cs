@@ -13,12 +13,6 @@ public class Book {
     public long Id { get; set; }
     
     /// <summary>
-    /// The code of the book. Used to separate business logic from data
-    /// fetching logic.
-    /// </summary>
-    public string Code { get; set; }
-    
-    /// <summary>
     /// The title of the book.
     /// </summary>
     public string Title { get; set; }
@@ -47,9 +41,4 @@ public class Book {
     /// Flag indicating whether the book has been borrowed or not.
     /// </summary>
     public bool Borrowed { get; set; } = false;
-    
-    /// <summary>
-    /// The code of the borrower, if applicable.
-    /// </summary>
-    public string Borrower { get; set; } = "";
 }

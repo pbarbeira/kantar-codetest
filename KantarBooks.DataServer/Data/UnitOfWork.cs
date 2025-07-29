@@ -28,10 +28,15 @@ public class UnitOfWork : IUnitOfWork{
     public IEnumerable<Book> GetBooks() {
         var books = BookRepository.GetBooks().ToList();
         foreach (var book in books) {
-            book.Author = Authors.TryGetValue(book.AuthorCode, out var author) ? author : new Author();
-            book.Publisher = Publishers.TryGetValue(book.PublisherCode, out var publisher) ? publisher : new Publisher();
+            LoadPublisherAndAuthorData(book);
         }
         return books;
+    }
+
+    public Book LoadPublisherAndAuthorData(Book book) {
+        book.Author = Authors.TryGetValue(book.AuthorCode, out var author) ? author : new Author();
+        book.Publisher = Publishers.TryGetValue(book.PublisherCode, out var publisher) ? publisher : new Publisher();
+        return book;
     }
     
     

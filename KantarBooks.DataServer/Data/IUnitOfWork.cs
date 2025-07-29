@@ -31,4 +31,11 @@ public interface IUnitOfWork : IDisposable{
     /// </summary>
     /// <returns>List of fully loaded book objects.</returns>
     IEnumerable<Book> GetBooks();
+
+    /// <summary>
+    /// Loads publisher and author data into Book model.
+    /// </summary>
+    /// <param name="book">The book model to be loaded.</param>
+    /// <returns>The loaded Book model</returns>
+    Book LoadPublisherAndAuthorData(Book book);
 }
