@@ -1,4 +1,5 @@
 using KantarBooks.DataServer.Models;
+using Microsoft.EntityFrameworkCore.Scaffolding.Metadata;
 
 namespace KantarBooks.DataServer.Data;
 
@@ -19,9 +20,13 @@ public class BookRepository(KantarBooksContext context) : IBookRepository, IDisp
     public Book? AddOrUpdateBook(Book book) {
         var data = _context.Books.Find(book.Id);
         if (data == null) {
-            return _context.Books.Add(book).Entity;
+            data = _context.Books.Add(book).Entity;
         }
-        return _context.Books.Update(book).Entity;
+        else {
+            data = _context.Books.Update(book).Entity;
+        }
+        _context.SaveChanges();
+        return data;
     }
 
     public Book? DeleteBook(long id) {

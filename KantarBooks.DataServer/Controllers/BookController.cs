@@ -82,8 +82,7 @@ public class BookController(IBookService bookService) : Controller{
     [HttpDelete("{id}")]
     public IActionResult DeleteBook([FromRoute] long id) {
         try {
-            var result = _bookService.DeleteBook(id);
-            return Ok(result);
+            return Ok(_bookService.DeleteBook(id));
         }
         catch (Exception e) {
             return Problem(e.Message);

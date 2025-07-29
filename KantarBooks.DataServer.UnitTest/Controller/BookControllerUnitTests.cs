@@ -6,8 +6,14 @@ using Moq;
 
 namespace KantarBooks.DataServer.UnitTest.Controller;
 
+/// <summary>
+/// Test class for BookController.
+/// </summary>
 [TestClass]
 public class BookControllerUnitTests {
+    /// <summary>
+    /// Tests whether GetAll API returns 200 when service executes smoothly.
+    /// </summary>
     [TestMethod]
     public void GetAll_Test() {
         var mockList = BuildMockDtoList();
@@ -24,6 +30,9 @@ public class BookControllerUnitTests {
         Assert.AreEqual(2, result.Count);
     }
 
+    /// <summary>
+    /// Tests whether AddOrUpdateBook API returns 200 when service executes smoothly.
+    /// </summary>
     [TestMethod]
     public void AddOrUpdateBook_Ok_Test() {
         var mockBook = BuildMockDto(false);
@@ -41,6 +50,9 @@ public class BookControllerUnitTests {
         Assert.AreEqual(mockBook.Id, result.Id);
     }
     
+    /// <summary>
+    /// Tests whether AddOrUpdateBook API returns 500 when an internal exception is thrown.
+    /// </summary>
     [TestMethod]
     public void AddOrUpdateBook_Problem_Test() {
         var mockBook = BuildMockDto(false);
@@ -56,6 +68,9 @@ public class BookControllerUnitTests {
         Assert.AreEqual(500, problemResult.StatusCode);
     }
     
+    /// <summary>
+    /// Tests whether BorrowBook API returns 200 when service executes smoothly.
+    /// </summary>
     [TestMethod]
     public void BorrowBook_Ok_Test() {
         var mockBook = BuildMockDto(false);
@@ -73,6 +88,9 @@ public class BookControllerUnitTests {
         Assert.AreEqual(mockBook.Id, result.Id);
     }
     
+    /// <summary>
+    /// Tests whether BorrowBook API returns 500 when an internal exception is thrown.
+    /// </summary>
     [TestMethod]
     public void BorrowBook_Problem_Test() {
         var mockBook = BuildMockDto(false);
@@ -88,6 +106,9 @@ public class BookControllerUnitTests {
         Assert.AreEqual(500, problemResult.StatusCode);
     }
     
+    /// <summary>
+    /// Tests whether DeliverBook API returns 200 when service executes smoothly.
+    /// </summary>
     [TestMethod]
     public void DeliverBook_Ok_Test() {
         var mockBook = BuildMockDto(false);
@@ -105,6 +126,9 @@ public class BookControllerUnitTests {
         Assert.AreEqual(mockBook.Id, result.Id);
     }
     
+    /// <summary>
+    /// Tests whether DeliverBook API returns 500 when an internal exception is thrown.
+    /// </summary>
     [TestMethod]
     public void DeliverBook_Problem_Test() {
         var mockBook = BuildMockDto(false);
@@ -120,6 +144,9 @@ public class BookControllerUnitTests {
         Assert.AreEqual(500, problemResult.StatusCode);
     }
     
+    /// <summary>
+    /// Tests whether DeleteBook API returns 200 when service executes smoothly.
+    /// </summary>
     [TestMethod]
     public void DeleteBook_Ok_Test() {
         var mockBook = BuildMockDto(false);
@@ -137,6 +164,9 @@ public class BookControllerUnitTests {
         Assert.AreEqual(mockBook.Id, result.Id);
     }
     
+    /// <summary>
+    /// Tests whether DeleteBook API returns 500 when an internal exception is thrown.
+    /// </summary>
     [TestMethod]
     public void DeleteBook_Problem_Test() {
         var mockBook = BuildMockDto(false);
@@ -152,6 +182,10 @@ public class BookControllerUnitTests {
         Assert.AreEqual(500, problemResult.StatusCode);
     }
 
+    /// <summary>
+    /// Helper method to automate building mock BookDto's.
+    /// </summary>
+    /// <returns>The BookDto object.</returns>
     private BookDto BuildMockDto(bool borrowed) {
         return new BookDto() {
             Id = 4,
@@ -162,6 +196,10 @@ public class BookControllerUnitTests {
         };
     }
     
+    /// <summary>
+    /// Helper method to automate building the mock BookDto list.
+    /// </summary>
+    /// <returns>The BookDto list.</returns>
     private IList<BookDto> BuildMockDtoList() {
         return new List<BookDto>() {
             BuildMockDto(true),

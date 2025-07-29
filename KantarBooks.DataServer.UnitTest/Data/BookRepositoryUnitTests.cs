@@ -11,6 +11,9 @@ namespace KantarBooks.DataServer.UnitTest.Data;
 [TestClass]
 public class BookRepositoryUnitTests {
     
+    /// <summary>
+    /// Sets up test context by running a sql script that resets the test database.
+    /// </summary>
     [TestInitialize]
     public void Init()
     {
@@ -40,6 +43,9 @@ public class BookRepositoryUnitTests {
         Assert.AreEqual(3, result.Count());
     }
     
+    /// <summary>
+    /// Tests whether GetBookById returns null when book is not found.
+    /// </summary>
     [TestMethod]
     public void GetBookById_NotFound_Test() {
         var repository = BuildRepository();
@@ -48,6 +54,9 @@ public class BookRepositoryUnitTests {
         Assert.IsNull(result);
     }
     
+    /// <summary>
+    /// Test whether GetbookById returns results when book is found.
+    /// </summary>
     [TestMethod]
     public void GetBookById_Found_Test() {
         var repository = BuildRepository();
@@ -56,28 +65,41 @@ public class BookRepositoryUnitTests {
         Assert.IsNotNull(result);
     }
 
+    /// <summary>
+    /// Tests whther AddOrUpdateBook adds a book to the database when the book does not exist.
+    /// </summary>
     [TestMethod]
     public void AddOrUpdateBook_BookNotFound_Test() {
         var repository = BuildRepository();
+        var bookCount = repository.GetBooks().Count();
         var book = BuildBook();
         
         var result = repository.AddOrUpdateBook(book);
         Assert.IsNotNull(result);
+        Assert.IsTrue(repository.GetBooks().Count() > bookCount);
     }
 
+    /// <summary>
+    /// Tests whther AddOrUpdateBook updates a book in the database when the book exists.
+    /// </summary>
     [TestMethod]
     public void AddOrUpdateBook_BookFound_Test() {
         var repository = BuildRepository();
         var book = repository.GetBookById(3);
+        var bookCount = repository.GetBooks().Count();
         book.AuthorCode = "KBA2";
         
         var result = repository.AddOrUpdateBook(book);
         Assert.IsNotNull(result);
         Assert.AreEqual(3, result.Id);
         Assert.AreEqual("KBA2", result.AuthorCode);
+        Assert.AreEqual(bookCount, repository.GetBooks().Count());
     }
     
   
+    /// <summary>
+    /// Tests whether DeleteBook returns null when the book exists.
+    /// </summary>
     [TestMethod]
     public void DeleteBook_BookNotFound_Test() {
         var repository = BuildRepository();
@@ -86,12 +108,17 @@ public class BookRepositoryUnitTests {
         Assert.IsNull(result);
     }
     
+    /// <summary>
+    /// Tests whether DeleteBook deletes a book from the database when it exists.
+    /// </summary>
     [TestMethod]
     public void DeleteBook_BookFound_Test() {
         var repository = BuildRepository();
+        var bookCount = repository.GetBooks().Count();
 
         var result = repository.DeleteBook(1);
         Assert.IsNotNull(result);
+        Assert.AreEqual(bookCount - 1, repository.GetBooks().Count());
     }
     
     /// <summary>
