@@ -16,7 +16,7 @@ public class BookControllerUnitTests {
     /// </summary>
     [TestMethod]
     public void GetAll_Test() {
-        var mockList = BuildMockDtoList();
+        var mockList = TestUtils.BuildMockDtoList();
         var mockService = new Mock<IBookService>();
         
         mockService.Setup(x => x.GetBooks()).Returns(mockList);
@@ -35,7 +35,7 @@ public class BookControllerUnitTests {
     /// </summary>
     [TestMethod]
     public void AddOrUpdateBook_Ok_Test() {
-        var mockBook = BuildMockDto(false);
+        var mockBook = TestUtils.BuildMockDto(false);
         var mockService = new Mock<IBookService>();
         
         mockService.Setup(x => x.AddOrUpdateBook(It.IsAny<BookDto>()))
@@ -55,7 +55,7 @@ public class BookControllerUnitTests {
     /// </summary>
     [TestMethod]
     public void AddOrUpdateBook_Problem_Test() {
-        var mockBook = BuildMockDto(false);
+        var mockBook = TestUtils.BuildMockDto(false);
         var mockService = new Mock<IBookService>();
         
         mockService.Setup(x => x.AddOrUpdateBook(It.IsAny<BookDto>()))
@@ -73,7 +73,7 @@ public class BookControllerUnitTests {
     /// </summary>
     [TestMethod]
     public void BorrowBook_Ok_Test() {
-        var mockBook = BuildMockDto(false);
+        var mockBook = TestUtils.BuildMockDto(false);
         var mockService = new Mock<IBookService>();
         
         mockService.Setup(x => x.BorrowBook(It.IsAny<long>()))
@@ -93,7 +93,7 @@ public class BookControllerUnitTests {
     /// </summary>
     [TestMethod]
     public void BorrowBook_Problem_Test() {
-        var mockBook = BuildMockDto(false);
+        var mockBook = TestUtils.BuildMockDto(false);
         var mockService = new Mock<IBookService>();
         
         mockService.Setup(x => x.BorrowBook(It.IsAny<long>()))
@@ -111,7 +111,7 @@ public class BookControllerUnitTests {
     /// </summary>
     [TestMethod]
     public void DeliverBook_Ok_Test() {
-        var mockBook = BuildMockDto(false);
+        var mockBook = TestUtils.BuildMockDto(false);
         var mockService = new Mock<IBookService>();
         
         mockService.Setup(x => x.DeliverBook(It.IsAny<long>()))
@@ -131,7 +131,7 @@ public class BookControllerUnitTests {
     /// </summary>
     [TestMethod]
     public void DeliverBook_Problem_Test() {
-        var mockBook = BuildMockDto(false);
+        var mockBook = TestUtils.BuildMockDto(false);
         var mockService = new Mock<IBookService>();
         
         mockService.Setup(x => x.DeliverBook(It.IsAny<long>()))
@@ -149,7 +149,7 @@ public class BookControllerUnitTests {
     /// </summary>
     [TestMethod]
     public void DeleteBook_Ok_Test() {
-        var mockBook = BuildMockDto(false);
+        var mockBook = TestUtils.BuildMockDto(false);
         var mockService = new Mock<IBookService>();
         
         mockService.Setup(x => x.DeleteBook(It.IsAny<long>()))
@@ -169,7 +169,7 @@ public class BookControllerUnitTests {
     /// </summary>
     [TestMethod]
     public void DeleteBook_Problem_Test() {
-        var mockBook = BuildMockDto(false);
+        var mockBook = TestUtils.BuildMockDto(false);
         var mockService = new Mock<IBookService>();
         
         mockService.Setup(x => x.DeleteBook(It.IsAny<long>()))
@@ -180,30 +180,5 @@ public class BookControllerUnitTests {
         Assert.IsNotNull(problemResult);
         Assert.IsNotNull(problemResult.Value);
         Assert.AreEqual(500, problemResult.StatusCode);
-    }
-
-    /// <summary>
-    /// Helper method to automate building mock BookDto's.
-    /// </summary>
-    /// <returns>The BookDto object.</returns>
-    private BookDto BuildMockDto(bool borrowed) {
-        return new BookDto() {
-            Id = 4,
-            Title = "Test Book",
-            Author = TestUtils.BuildAuthor(),
-            Publisher = TestUtils.BuildPublisher(),
-            Borrowed = borrowed
-        };
-    }
-    
-    /// <summary>
-    /// Helper method to automate building the mock BookDto list.
-    /// </summary>
-    /// <returns>The BookDto list.</returns>
-    private IList<BookDto> BuildMockDtoList() {
-        return new List<BookDto>() {
-            BuildMockDto(true),
-            BuildMockDto(false)
-        };
     }
 }

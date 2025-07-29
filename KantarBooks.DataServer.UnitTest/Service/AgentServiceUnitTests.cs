@@ -31,7 +31,7 @@ public sealed class AgentServiceUnitTests {
     /// <summary>
     /// Helper method to automate building the Authors dictionary.
     /// </summary>
-    /// <returns></returns>
+    /// <returns>The built Authors dictionary.</returns>
     private IDictionary<string, Author> BuildAuthorDictionary() {
         return new Dictionary<string, Author> {{
                 "Author", TestUtils.BuildAuthor()
@@ -41,7 +41,7 @@ public sealed class AgentServiceUnitTests {
     /// <summary>
     /// Helper method to automate building the Publishers dictionary.
     /// </summary>
-    /// <returns></returns>
+    /// <returns>The built Publishers dictionary.</returns>
     private IDictionary<string, Publisher> BuildPublisherDictionary() {
         return new Dictionary<string, Publisher> {{
             "Publisher", TestUtils.BuildPublisher()

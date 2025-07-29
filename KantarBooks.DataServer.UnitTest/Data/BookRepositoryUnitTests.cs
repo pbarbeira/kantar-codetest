@@ -14,8 +14,8 @@ public class BookRepositoryUnitTests {
     /// <summary>
     /// Sets up test context by running a sql script that resets the test database.
     /// </summary>
-    [TestInitialize]
-    public void Init()
+    [ClassInitialize]
+    public static void Setup(TestContext testContext)
     {
         var basePath = AppDomain.CurrentDomain.BaseDirectory;
         var connString = $"Data Source={Path.Combine(basePath, "testdb.sqlite")};";
@@ -77,6 +77,10 @@ public class BookRepositoryUnitTests {
         var result = repository.AddOrUpdateBook(book);
         Assert.IsNotNull(result);
         Assert.IsTrue(repository.GetBooks().Count() > bookCount);
+
+        result = repository.DeleteBook(result.Id);
+        Assert.IsNotNull(result);
+        Assert.AreEqual(repository.GetBooks().Count(), bookCount);
     }
 
     /// <summary>
@@ -119,6 +123,10 @@ public class BookRepositoryUnitTests {
         var result = repository.DeleteBook(1);
         Assert.IsNotNull(result);
         Assert.AreEqual(bookCount - 1, repository.GetBooks().Count());
+
+        result = repository.AddOrUpdateBook(result);
+        Assert.IsNotNull(result);
+        Assert.AreEqual(bookCount, repository.GetBooks().Count());
     }
     
     /// <summary>
@@ -133,16 +141,20 @@ public class BookRepositoryUnitTests {
     }
     
     /// <summary>
-    /// Encapsulates initialization logic for BookRepository objects.
+    /// Helper method to automate building the repository object.
     /// </summary>
-    /// <returns>The BookRepository instance.</returns>
+    /// <returns>The built BookRepository instance.</returns>
     private BookRepository BuildRepository() {
         var context = BuildMockContext();
 
         var repository = new BookRepository(context);
         return repository;
     }
-
+    
+    /// <summary>
+    /// Helper method to automate building Book objects.
+    /// </summary>
+    /// <returns>The built Book object</returns>
     private Book BuildBook() {
         return new Book() {
             Id = 4,

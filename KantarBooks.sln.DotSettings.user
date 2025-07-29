@@ -45,12 +45,20 @@
     &lt;TestId&gt;MSTest::F282F509-E98F-478E-8C0B-2429BA1281E6::net9.0::KantarBooks.DataServer.UnitTest.Data.BookRepositoryUnitTests&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=434db599_002Dbb1f_002D4b83_002D8a57_002D4150940c6ac4/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="AddOrUpdateBooks_OK_Test" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;MSTest::F282F509-E98F-478E-8C0B-2429BA1281E6::net9.0::KantarBooks.DataServer.UnitTest.Service.BookServiceUnitTests&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=58c56b00_002Df81e_002D48fd_002Da74f_002Dc8e84271fcf4/@EntryIndexedValue">&lt;SessionState ContinuousTestingIsOn="True" ContinuousTestingMode="3" Name="Continuous Testing" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;Namespace&gt;KantarBooks.DataServer.UnitTest.Service&lt;/Namespace&gt;
+&lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=5f33630b_002Dfec6_002D44ba_002Dbf3c_002D367b77f4e0a0/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="AddOrUpdateBook_BookFound_Test" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;TestAncestor&gt;
     &lt;TestId&gt;MSTest::F282F509-E98F-478E-8C0B-2429BA1281E6::net9.0::KantarBooks.DataServer.UnitTest.Data.BookRepositoryUnitTests.AddOrUpdateBook_BookFound_Test&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=a2475fc9_002D7ba8_002D4812_002Da3d2_002Dbb6b29b1b483/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="BookRepositoryUnitTests #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=a2475fc9_002D7ba8_002D4812_002Da3d2_002Dbb6b29b1b483/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="BookRepositoryUnitTests #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;TestAncestor&gt;
     &lt;TestId&gt;MSTest::F282F509-E98F-478E-8C0B-2429BA1281E6::net9.0::KantarBooks.DataServer.UnitTest.Data.BookRepositoryUnitTests&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
@@ -60,8 +68,8 @@
     &lt;TestId&gt;MSTest::F282F509-E98F-478E-8C0B-2429BA1281E6::net9.0::KantarBooks.DataServer.UnitTest.DataAccess.BookRepositoryUnitTests.GetBooks_Test&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=c3a666e6_002Dc94d_002D421f_002D89fb_002D3858f05ba88f/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="All tests from Solution" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
-  &lt;Solution /&gt;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=c3a666e6_002Dc94d_002D421f_002D89fb_002D3858f05ba88f/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="All tests from Solution" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;Project Location="/home/pbarbeira/dev/code/dotnet/KantarBooks/KantarBooks.DataServer.UnitTest" Presentation="&amp;lt;KantarBooks.DataServer.UnitTest&amp;gt;" /&gt;
 &lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=cafc3f62_002D813c_002D47f0_002Da047_002D787592aa762b/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="GetBooks_Test" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;TestAncestor&gt;

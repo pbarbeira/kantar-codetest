@@ -25,11 +25,14 @@ public class BookService(IUnitOfWork unitOfWork) : IBookService {
         if (result != null) {
             return TypeConverter.BookToDto(_unitOfWork.LoadPublisherAndAuthorData(result));
         }
-        throw new Exception("Book could not be added or updated");
+        throw new Exception("Could not add or update book.");
     }
     
-    public BookDto BorrowBook(long id) {
+    public BookDto BorrowBook(long id) {    
         var book = GetBookById(id);
+        if (book.Borrowed) {
+            throw new Exception("Error: can't borrow a book that's already borrowed.");
+        }
         book.Borrowed = true;
         var result = _unitOfWork.BookRepository.AddOrUpdateBook(book);
         return TypeConverter.BookToDto(_unitOfWork.LoadPublisherAndAuthorData(result!));
@@ -37,12 +40,19 @@ public class BookService(IUnitOfWork unitOfWork) : IBookService {
     
     public BookDto DeliverBook(long id) {
         var book = GetBookById(id);
+        if (!book.Borrowed) {
+            throw new Exception("Error: can't borrow a book that's already borrowed.");
+        }
         book.Borrowed = false;
         var result = _unitOfWork.BookRepository.AddOrUpdateBook(book);
         return TypeConverter.BookToDto(_unitOfWork.LoadPublisherAndAuthorData(result!));
     }
 
     public BookDto DeleteBook(long id) {
-        return TypeConverter.BookToDto(_unitOfWork.BookRepository.DeleteBook(id)!);
+        var book = _unitOfWork.BookRepository.DeleteBook(id);
+        if (book != null) {
+            return TypeConverter.BookToDto(book);
+        }
+        throw new Exception("Book could not be found");
     }
 }
