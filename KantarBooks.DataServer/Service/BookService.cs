@@ -1,30 +1,29 @@
 using KantarBooks.DataServer.Data;
-using KantarBooks.DataServer.Model;
-using KantarBooks.DataServer.Model.Agent;
+using KantarBooks.DataServer.Models;
 
 namespace KantarBooks.DataServer.Service;
 
 public class BookService(IUnitOfWork unitOfWork) : IBookService {
     private IUnitOfWork _unitOfWork => unitOfWork;
 
-    public IList<BookDTO> GetBooks() {
+    public IList<BookDto> GetBooks() {
         var books = _unitOfWork.GetBooks().ToList();
         return TypeConverter.BookToDto(books).ToList();
     }
     
-    public BookDTO AddOrUpdateBook(BookDTO book) {
+    public BookDto AddOrUpdateBook(BookDto book) {
         throw new NotImplementedException();
     }
 
-    public BookDTO DeleteBook(BookDTO book) {
+    public BookDto DeleteBook(BookDto book) {
         throw new NotImplementedException();
     }
 
-    public BookDTO BorrowBook(BookDTO book, UserDTO user) {
+    public BookDto BorrowBook(BookDto book, string userCode) {
         throw new NotImplementedException();
     }
 
-    public BookDTO DeliverBook(BookDTO book, UserDTO user) {
+    public BookDto DeliverBook(BookDto book, string userCode) {
         throw new NotImplementedException();
     }
 }

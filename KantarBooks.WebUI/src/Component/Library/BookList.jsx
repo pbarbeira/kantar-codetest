@@ -25,8 +25,6 @@ const BookList = ({Books, OnCreateBookClick, BookItemActions}) => {
     return book[filterAttribute].includes(searchTerm);
   }
 
-  console.log(filterAttribute);
-
   return(
     <div>
       <Container>

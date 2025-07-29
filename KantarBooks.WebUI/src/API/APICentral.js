@@ -13,7 +13,6 @@ export default class API {
   }
 
   static async Post(route, body){
-    console.log(JSON.stringify(body));
     const res = await fetch(`${host}:${port}/${route}`, {
       method: 'POST',
       headers: { 

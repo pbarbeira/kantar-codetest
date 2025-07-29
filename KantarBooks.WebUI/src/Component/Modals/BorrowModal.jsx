@@ -13,7 +13,7 @@ const BorrowModal = ({Show, FormData, OnSaveBorrowClick, OnSaveDeliverClick, OnH
     if(Object.keys(FormData).length > 0){
       setBookName(FormData.Name)
       setBookCode(FormData.BookCode || "");
-      setBorrowerCode(FormData.Borrower.code);
+      setBorrowerCode(FormData.Borrower);
       setBorrowFlag(FormData.Borrower === "");
     }
   }, [FormData]);

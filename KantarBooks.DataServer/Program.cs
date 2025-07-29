@@ -19,12 +19,11 @@ builder.Services.AddDbContext<KantarBooksContext>(options =>
     options.UseSqlServer(connectionString)
 );
 
-builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IBookRepository, BookRepository>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
-builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IBookService, BookService>();
+builder.Services.AddScoped<IAgentService, AgentService>();
 #endregion
 
 #region API

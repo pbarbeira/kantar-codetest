@@ -1,40 +1,50 @@
 using System.ComponentModel.DataAnnotations.Schema;
-using KantarBooks.DataServer.Model.Agent;
 
-namespace KantarBooks.DataServer.Model;
+namespace KantarBooks.DataServer.Models;
 
-public class Book
-{
+/// <summary>
+/// Book model for KantarBooks books. Acts as schema for EntityFramework.
+/// </summary>
+public class Book {
+    /// <summary>
+    /// The id of the book. Handles autoincrement if the database engine
+    /// supports it.
+    /// </summary>
     public long Id { get; set; }
-    public string Code { get; set; }
-    public string Name { get; set; }
     
+    /// <summary>
+    /// The code of the book. Used to separate business logic from data
+    /// fetching logic.
+    /// </summary>
+    public string Code { get; set; }
+    
+    /// <summary>
+    /// The title of the book.
+    /// </summary>
+    public string Title { get; set; }
+
+    /// <summary>
+    /// The code of the author. Used to match with the appropriate author
+    /// object in UnitOfWork.
+    /// </summary>
     public string AuthorCode { get; set; }
-    [NotMapped]
-    public Author Author { get; set; }
-    
+    /// <summary>
+    /// The code's Author. Lazy-loaded by the system.
+    /// </summary>
+    [NotMapped] public Author Author { get; set; }
+
+    /// <summary>
+    /// The code of the author. Used to match with the appropriate author
+    /// object in UnitOfWork.
+    /// </summary>
     public string PublisherCode { get; set; }
-    [NotMapped]
-    public Publisher Publisher { get; set; }
-    
-    public bool Borrowed { get; set; }
-    public User? Borrower { get; set; } = null;
+    /// <summary>
+    /// The code's Publisher. Lazy-loaded by the system.
+    /// </summary>
+    [NotMapped] public Publisher Publisher { get; set; }
 
-    private void BorrowBook(User borrower) {
-        Borrowed = true;
-        Borrower = borrower;
-    }
-
-    private void ReturnBook() {
-        Borrowed = false;
-        Borrower = null;
-    }
-}
-
-public class BookDTO {
-    public string Code { get; set; }
-    public string Name { get; set; }
-    public UserDTO Author { get; set; }
-    public UserDTO Publisher { get; set; }
-    public UserDTO Borrower { get; set; } = new User();
+    /// <summary>
+    /// The code of the borrower. If empty, indicates book was not borrowed.
+    /// </summary>
+    public string Borrower { get; set; } = "";
 }

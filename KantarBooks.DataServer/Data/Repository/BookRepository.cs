@@ -1,12 +1,12 @@
-using KantarBooks.DataServer.Model;
+using KantarBooks.DataServer.Models;
 
 namespace KantarBooks.DataServer.Data.Repository;
 
 /// <summary>
 /// Handles operations and bookkeeping related to Book objects.
 /// </summary>
-public class BookRepository(KantarBooksContext context) 
-    : Repository<Book>(context), IBookRepository {
+public class BookRepository(KantarBooksContext context) : IDisposable, IAsyncDisposable {
+    private KantarBooksContext _context => context;
     
     public IEnumerable<Book> GetBooks() {
         return _context.Books.ToList();
@@ -25,5 +25,13 @@ public class BookRepository(KantarBooksContext context)
 
     public Book? DeleteBook(string code) {
         throw new NotImplementedException();
+    }
+
+    public void Dispose() {
+        context.Dispose();
+    }
+
+    public async ValueTask DisposeAsync() {
+        await context.DisposeAsync();
     }
 }

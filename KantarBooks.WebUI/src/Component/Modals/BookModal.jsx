@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
-import UserCmd from "../../Command/UserCmd";
 import { DataContext } from "../../DataContext";
 
 const BookModal = ({Show, Title, FormData, OnSaveClick, OnHide}) => {
@@ -44,6 +43,7 @@ const BookModal = ({Show, Title, FormData, OnSaveClick, OnHide}) => {
     OnHide();
     OnSaveClick(form);
   }
+
 
   const authorIndex = authors.findIndex(x => x.code == author.code);
   const publisherIndex = publishers.findIndex(x => x.code == publisher.code);

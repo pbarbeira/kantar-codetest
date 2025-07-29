@@ -1,7 +1,6 @@
 using KantarBooks.DataServer.Config;
 using KantarBooks.DataServer.Data.Repository;
-using KantarBooks.DataServer.Model;
-using KantarBooks.DataServer.Model.Agent;
+using KantarBooks.DataServer.Models;
 
 namespace KantarBooks.DataServer.Data;
 
@@ -10,16 +9,15 @@ namespace KantarBooks.DataServer.Data;
 /// </summary>
 public class UnitOfWork : IUnitOfWork{
     
-    public IUserRepository UserRepository { get; }
     public IBookRepository BookRepository { get; }
     public IDictionary<string, Author> Authors { get; }
     public IDictionary<string, Publisher> Publishers { get; }    
     
     /// <summary>
-    /// Default constructor for UnitOfWork. Used for test purposes.
+    /// Default constructor for UnitOfWork. Loads author and publisher data
+    /// from the AgentConfig object into a dictionary.
     /// </summary>
-    public UnitOfWork(IUserRepository agentRepository, IBookRepository bookRepository, IConfiguration configuration) {
-        UserRepository = agentRepository;
+    public UnitOfWork(IBookRepository bookRepository, IConfiguration configuration) {
         BookRepository = bookRepository;
         
         var agentConfig = configuration.GetSection("AgentConfig").Get<AgentConfig>() ?? new AgentConfig();
@@ -38,7 +36,6 @@ public class UnitOfWork : IUnitOfWork{
     
     
     public void Dispose() {
-        UserRepository.Dispose();
         BookRepository.Dispose();
     }
 }

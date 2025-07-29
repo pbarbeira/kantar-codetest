@@ -109,7 +109,7 @@ const LibraryDashboard = () =>{
   const onUpdateBookClick = (book) => {
     setShow(BOOK_MODAL);
     setForm({
-      Name: book.name,
+      Name: book.title,
       Code: book.code,
       Author: book.author,
       Publisher: book.publisher
@@ -118,7 +118,7 @@ const LibraryDashboard = () =>{
 
   const onBorrowBookClick = (book) =>{
     setForm({
-      Name: book.name,
+      Name: book.title,
       BookCode: book.code,
       Borrower: book.borrower !== undefined ? book.borrower.code : ""
     })

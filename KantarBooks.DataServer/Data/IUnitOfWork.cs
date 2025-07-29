@@ -1,6 +1,5 @@
 using KantarBooks.DataServer.Data.Repository;
-using KantarBooks.DataServer.Model;
-using KantarBooks.DataServer.Model.Agent;
+using KantarBooks.DataServer.Models;
 
 namespace KantarBooks.DataServer.Data;
 
@@ -11,11 +10,25 @@ namespace KantarBooks.DataServer.Data;
 /// logic to pull data from the database.
 /// </summary>
 public interface IUnitOfWork : IDisposable{
-   
-    IUserRepository UserRepository { get; }
+    /// <summary>
+    /// Repository object handling the Book ORM operations
+    /// </summary>
     IBookRepository BookRepository { get; }
+    
+    /// <summary>
+    /// Dictionary containing author information.
+    /// </summary>
     IDictionary<string, Author> Authors { get; }
+    
+    /// <summary>
+    /// Dictionary containing publisher information;
+    /// </summary>
     IDictionary<string, Publisher> Publishers { get; }    
 
+    /// <summary>
+    /// Loads up author and publisher information into book objects. Returns
+    /// the resulting objects.
+    /// </summary>
+    /// <returns>List of fully loaded book objects.</returns>
     IEnumerable<Book> GetBooks();
 }

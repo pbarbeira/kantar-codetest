@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import UserCmd from "./Command/UserCmd";
+import AgentCmd from "./Command/AgentCmd";
 
 export const DataContext = createContext();
 
@@ -8,24 +8,16 @@ export const DataProvider = ({ children }) => {
   const [publishers, setPublishers] = useState([])
 
   useEffect(()=>{
-    const fetchAuthors = async ()=>{
+    const fetchAgents = async ()=>{
       try{
-        const authors = await UserCmd.GetAuthors();
-        setAuthors(authors);
+        const agents = await AgentCmd.GetAgents();
+        setAuthors(agents.authors);
+        setPublishers(agents.publishers);
       } catch(e){
         console.error(e);
       }
     }
-    const fetchPublishers = async()=>{
-      try{
-        const publishers = await UserCmd.GetPublishers();
-        setPublishers(publishers);
-      } catch(e){
-        console.error(e);
-      }
-    }
-    fetchAuthors();
-    fetchPublishers();
+    fetchAgents();
   }, [])
 
   return (

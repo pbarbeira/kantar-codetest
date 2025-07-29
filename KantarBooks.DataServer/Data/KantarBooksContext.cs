@@ -1,6 +1,5 @@
 using KantarBooks.DataServer.Config;
-using KantarBooks.DataServer.Model;
-using KantarBooks.DataServer.Model.Agent;
+using KantarBooks.DataServer.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace KantarBooks.DataServer.Data;
@@ -10,8 +9,12 @@ namespace KantarBooks.DataServer.Data;
 /// </summary>
 public class KantarBooksContext : DbContext {
     public DbSet<Book> Books { get; set;}
-    public DbSet<User> Users { get; set;}
 
+    /// <summary>
+    /// Builds the SqlServer connection string from the configuration file.
+    /// </summary>
+    /// <param name="config">The configuration file.</param>
+    /// <returns>The resulting SqlServer connection string.</returns>
     public static string BuildConnectionString(DbConfig config) {
         return $"Server={config.Host},{config.Port};" +
                $"Database={config.Database};" +
@@ -20,6 +23,10 @@ public class KantarBooksContext : DbContext {
                $"TrustServerCertificate={config.TrustServerCertificate};";
     }
 
+    /// <summary>
+    /// Base constructor for KantarBookContext.
+    /// </summary>
+    /// <param name="options">Options object used by DI container.</param>
     public KantarBooksContext(DbContextOptions<KantarBooksContext> options)
         : base(options) { }
 }
