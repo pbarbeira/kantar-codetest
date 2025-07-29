@@ -1,9 +1,8 @@
-using KantarBooks.DataServer.DataAccess;
-using KantarBooks.DataServer.Model;
+using KantarBooks.DataServer.Data;
+using KantarBooks.DataServer.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 
-namespace KantarBooks.DataServer.UnitTest.DataAccess;
+namespace KantarBooks.DataServer.UnitTest.Data;
 
 /// <summary>
 /// Unit Tests for the BookRepository service.
@@ -29,8 +28,7 @@ public class BookRepositoryUnitTests {
         var repository = BuildRepository();
         var book = new Book() {
             Id = 4,
-            Code = "KBB4",
-            Name = "Test Book",
+            Title = "Test Book",
             AuthorCode = "KBP3",
             PublisherCode = "KBP3",
             Borrowed = false
@@ -40,7 +38,7 @@ public class BookRepositoryUnitTests {
         Assert.IsNotNull(result);
         Assert.AreEqual(4, result.Id);
 
-        result = repository.DeleteBook(book.Code);
+        result = repository.DeleteBook(book);
         Assert.IsNotNull(result );
         Assert.AreEqual(4, result.Id);
     }
@@ -110,7 +108,6 @@ public class BookRepositoryUnitTests {
         var context = BuildMockContext();
 
         var repository = new BookRepository(context);
-        repository.LoadCache();
         return repository;
     }
 }

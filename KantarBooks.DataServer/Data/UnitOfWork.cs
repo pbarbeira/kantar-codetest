@@ -1,5 +1,4 @@
 using KantarBooks.DataServer.Config;
-using KantarBooks.DataServer.Data.Repository;
 using KantarBooks.DataServer.Models;
 
 namespace KantarBooks.DataServer.Data;

@@ -1,6 +1,6 @@
 using KantarBooks.DataServer.Models;
 
-namespace KantarBooks.DataServer.Data.Repository;
+namespace KantarBooks.DataServer.Data;
 
 /// <summary>
 /// Interface class for BookRepository

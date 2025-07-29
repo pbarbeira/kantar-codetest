@@ -1,6 +1,5 @@
 using KantarBooks.DataServer.Config;
 using KantarBooks.DataServer.Data;
-using KantarBooks.DataServer.Data.Repository;
 using KantarBooks.DataServer.Service;
 using Microsoft.EntityFrameworkCore;
 
