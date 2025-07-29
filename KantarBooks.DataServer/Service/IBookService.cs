@@ -15,28 +15,30 @@ public interface IBookService {
     /// <summary>
     /// Saves a book in the system.
     /// </summary>
-    /// <param name="book">The book to be saved.</param>
+    /// <param name="bookDto">The book to be saved.</param>
     /// <returns>A BookDto with the result of the service operation.</returns>
-    BookDto AddOrUpdateBook(BookDto book);
+    BookDto? AddOrUpdateBook(BookDto bookDto);
     
     /// <summary>
     /// Marks a book as borrowed.
     /// </summary>
-    /// <param name="book">The book to be marked as borrowed.</param>
+    /// <param name="bookCode">The code of the book to be marked as borrowed.</param>
+    /// <param name="userCode">The code of the user that borrowed the book.</param>
     /// <returns>A BookDto with the result of the service operation.</returns>
-    BookDto BorrowBook(BookDto book, string userCode);
+    BookDto? BorrowBook(string bookCode, string userCode);
     
     /// <summary>
     /// Unmarks a book as borrowed.
     /// </summary>
-    /// <param name="book">The book to be unmarked as borrowed.</param>
+    /// <param name="bookCode">The code of the book to be unmarked as borrowed.</param>
+    /// <param name="userCode">The code of the user that borrowed the book.</param>
     /// <returns>A BookDto with the result of the service operation.</returns>
-    BookDto DeliverBook(BookDto book, string userCode);
+    BookDto? DeliverBook(string bookCode, string userCode);
     
     /// <summary>
     /// Deletes a book from the system.
     /// </summary>
-    /// <param name="book">The book to be deleted.</param>
+    /// <param name="bookCode">The code of the book to be deleted.</param>
     /// <returns>A BookDto with the result of the service operation.</returns>
-    BookDto DeleteBook(BookDto book);
+    BookDto? DeleteBook(string bookCode);
 }

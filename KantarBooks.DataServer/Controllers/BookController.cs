@@ -35,20 +35,29 @@ public class BookController(IBookService bookService) : Controller{
     /// <returns>Ok upon success</returns>
     [HttpPost]
     public IActionResult AddOrUpdateBook([FromBody] BookDto book) {
-        book.Code = book.Code == "" ? "new code" : book.Code;
-        return Ok(book);
+        try {
+            return Ok(_bookService.AddOrUpdateBook(book));
+        }
+        catch (Exception e) {
+            return Problem(e.Message);
+        }
     }
 
     /// <summary>
     /// Registers a book as borrowed by storing in the database the code of
     /// the user that borrowed the book.
     /// </summary>
-    /// <param name="bookCode">The coode of the book to be borrowed.</param>
+    /// <param name="bookCode">The code of the book to be borrowed.</param>
     /// <param name="userCode">The user code of the borrower.</param>
     /// <returns>Ok upon success</returns>
-    [HttpPost("{bookCode}/borrow")]
+    [HttpPost("{bookId}/borrow")]
     public IActionResult BorrowBook([FromRoute] string bookCode, [FromBody]  string userCode) {
-        return Ok(bookCode);
+        try {
+            return Ok(_bookService.BorrowBook(bookCode, userCode));
+        }
+        catch (Exception e) {
+            return Problem(e.Message);
+        }
     }
     
     /// <summary>
@@ -58,9 +67,14 @@ public class BookController(IBookService bookService) : Controller{
     /// <param name="bookCode">The code of the book to be returned.</param>
     /// <param name="userCode">The code of the user that returned the book.</param>
     /// <returns>Ok upon success.</returns>
-    [HttpPost("{bookCode}/deliver")]
+    [HttpPost("{bookId}/deliver")]
     public IActionResult DeliverBook([FromRoute] string bookCode, [FromBody] string userCode) {
-        return Ok(bookCode);
+        try {
+            return Ok(_bookService.DeliverBook(bookCode, userCode));
+        }
+        catch (Exception e) {
+            return Problem(e.Message);
+        }
     }
     
     /// <summary>
@@ -70,6 +84,12 @@ public class BookController(IBookService bookService) : Controller{
     /// <returns>Ok upon success.</returns>
     [HttpDelete("{code}")]
     public IActionResult DeleteBook([FromRoute] string code) {
-        return Ok(code);
+        try {
+            var result = _bookService.DeleteBook(code);
+            return Ok(result);
+        }
+        catch (Exception e) {
+            return Problem(e.Message);
+        }
     }
 }

@@ -44,7 +44,12 @@ public class Book {
     [NotMapped] public Publisher Publisher { get; set; }
 
     /// <summary>
-    /// The code of the borrower. If empty, indicates book was not borrowed.
+    /// Flag indicating whether the book has been borrowed or not.
+    /// </summary>
+    public bool Borrowed { get; set; } = false;
+    
+    /// <summary>
+    /// The code of the borrower, if applicable.
     /// </summary>
     public string Borrower { get; set; } = "";
 }

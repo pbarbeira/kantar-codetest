@@ -6,8 +6,8 @@ const BookItem = ({Data, RowClass, Actions}) => {
     <Row className = {`${RowClass} padding-top-5px padding-bot-5px`}>
       <Col xs = {6} md = {3} lg={3} xl={2} >{Data.code}</Col>
       <Col xs = {0} md = {6} lg={4} xl={4} className="d-none d-md-block text-truncate">{Data.title}</Col>
-      <Col xs = {0} md = {0} lg={3} xl={2} className="d-none d-lg-block">{Data.author}</Col>
-      <Col xs = {0} md = {0} lg={0} xl={2} className="text-truncate d-none d-xl-block">{Data.publisher}</Col>
+      <Col xs = {0} md = {0} lg={3} xl={2} className="d-none d-lg-block">{Data.author.name}</Col>
+      <Col xs = {0} md = {0} lg={0} xl={2} className="text-truncate d-none d-xl-block">{Data.publisher.name}</Col>
       <Col xs = {6} md = {3} lg={2} xl={2}>
         <Row className="align-items-center">
           <Col xs={4}></Col>

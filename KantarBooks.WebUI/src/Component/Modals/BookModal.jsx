@@ -5,14 +5,16 @@ import { DataContext } from "../../DataContext";
 const BookModal = ({Show, Title, FormData, OnSaveClick, OnHide}) => {
   const {authors, publishers } = useContext(DataContext);
 
-  const [name, setName] = useState("");
+  const [id, setId] = useState(0);
   const [code, setCode] = useState("");
+  const [title, setTitle] = useState("");
   const [author, setAuthor] = useState({});
   const [publisher, setPublisher] = useState({});
 
   useEffect(() => {
     if(FormData){
-      setName(FormData.Name || "");
+      setId(FromData.Id || 0);
+      setTitle(FormData.Title || "");
       setCode(FormData.Code || "");
       setAuthor(FormData.Author || {});
       setPublisher(FormData.Publisher || {});
@@ -20,7 +22,7 @@ const BookModal = ({Show, Title, FormData, OnSaveClick, OnHide}) => {
   }, [FormData]);
 
   const onNameChange = (name) => {
-    setName(name);
+    setTitle(name);
   }
 
   const onAuthorChange = (authorIdx) => {
@@ -35,7 +37,8 @@ const BookModal = ({Show, Title, FormData, OnSaveClick, OnHide}) => {
 
   const onSave = () =>{
     const form = {
-      Name: name,
+      Id: id,
+      Title: title,
       Code: code,
       Author: author,
       Publisher: publisher
@@ -59,7 +62,7 @@ const BookModal = ({Show, Title, FormData, OnSaveClick, OnHide}) => {
               <Form.Label className="m-1">Book Name:</Form.Label>
               <Form.Control type="text"
                 placeholder="Enter book name"
-                value={name}
+                value={title}
                 onChange={(e)=>{ onNameChange(e.target.value) }} 
               />
             </Form.Group>

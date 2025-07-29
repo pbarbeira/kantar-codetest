@@ -14,6 +14,14 @@ public interface IBookRepository : IDisposable{
     IEnumerable<Book> GetBooks();
     
     /// <summary>
+    /// Returns the book associated with the given code.
+    /// </summary>
+    /// <param name="bookCode">The code of the book to be found.</param>
+    /// <returns>The book data associated with the given code upon success, null
+    /// otherwise.</returns>
+    Book? GetBookByCode(string bookCode);
+    
+    /// <summary>
     /// Saves a book in the database.
     /// </summary>
     /// <param name="book">The book to be saved in the database.</param>
@@ -21,23 +29,9 @@ public interface IBookRepository : IDisposable{
     Book? AddOrUpdateBook(Book book);
     
     /// <summary>
-    /// Marks a book as borrowed in the database..
-    /// </summary>
-    /// <param name="book">The book to be marked as borrowed in the database.</param>
-    /// <returns>The book object returned from the dbContext call.</returns>
-    Book? BorrowBook(string bookCode, string userCode);
-    
-    /// <summary>
-    /// Marks a book as returned in the database.
-    /// </summary>
-    /// <param name="book">The book to be marked as returned in the database.</param>
-    /// <returns>The book object returned from the dbContext call.</returns>
-    Book? DeliverBook(string bookCode, string userCode);
-    
-    /// <summary>
     /// Deletes a book from the database.
     /// </summary>
     /// <param name="book">The book to be deleted from the database.</param>
     /// <returns>The book object returned from the dbContext call.</returns>
-    Book? DeleteBook(string code);
+    Book? DeleteBook(Book book);
 }

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Button, Col, Container, Form, Modal, Row } from "react-bootstrap";
 
 const BorrowModal = ({Show, FormData, OnSaveBorrowClick, OnSaveDeliverClick, OnHide}) => {
-  const [bookName, setBookName] = useState("");
+  const [bookTitle, setBookTitle] = useState("");
   const [bookCode, setBookCode] = useState("");
   const [borrowerCode, setBorrowerCode] = useState("");
   const [userCode, setUserCode] = useState("");
@@ -11,7 +11,7 @@ const BorrowModal = ({Show, FormData, OnSaveBorrowClick, OnSaveDeliverClick, OnH
 
   useEffect(() => {
     if(Object.keys(FormData).length > 0){
-      setBookName(FormData.Name)
+      setBookTitle(FormData.Title)
       setBookCode(FormData.BookCode || "");
       setBorrowerCode(FormData.Borrower);
       setBorrowFlag(FormData.Borrower === "");
@@ -46,7 +46,7 @@ const BorrowModal = ({Show, FormData, OnSaveBorrowClick, OnSaveDeliverClick, OnH
           <Container fluid>
             <Row>
               <Col>{bookCode}</Col>
-              <Col>{bookName}</Col>
+              <Col>{bookTitle}</Col>
             </Row>
             <Form>
               <Form.Group>

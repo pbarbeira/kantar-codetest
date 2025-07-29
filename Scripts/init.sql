@@ -19,6 +19,7 @@ if not exists(select * from sys.tables where name = 'Books')
 			Title nvarchar(255) not null,
 			AuthorCode nvarchar(50) not null,
 			PublisherCode nvarchar(50) not null,
+			Borrowed bit not null default 0,
 			Borrower nvarchar(50) not null,
 		);
 	end
@@ -27,14 +28,14 @@ go
 
 if not exists(select 1 from Books)
 	begin
-		insert into Books(Code, Title, AuthorCode, PublisherCode, Borrower)
-		values('KBB000001', 'The Right Thing, Right Now', 'KBA000001', 'KBP000001', "");
+		insert into Books(Code, Title, AuthorCode, PublisherCode, Borrowed, Borrower)
+		values('KBB1', 'The Right Thing, Right Now', 'KBA1', 'KBP1', 0, "");
 		
-		insert into Books(Code, Title, AuthorCode, PublisherCode, Borrower)
-		values('KBB000002', 'The Process Mind', 'KBA000002', 'KBP000002', "");
+		insert into Books(Code, Title, AuthorCode, PublisherCode, Borrowed, Borrower)
+		values('KBB2', 'The Process Mind', 'KBA2', 'KBP2', 1, "KBU1");
 
-			insert into Books(Code, Title, AuthorCode, PublisherCode, Borrower)
-		values('KBB000003', 'The Light of the Soul', 'KBA000003', 'KBP000003', "");
+			insert into Books(Code, Title, AuthorCode, PublisherCode, Borrowed, Borrower)
+		values('KBB3', 'The Light of the Soul', 'KBA3', 'KBP3', "");
 		
 	end
 go

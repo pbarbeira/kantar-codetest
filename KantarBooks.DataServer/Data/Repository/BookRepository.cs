@@ -1,4 +1,5 @@
 using KantarBooks.DataServer.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace KantarBooks.DataServer.Data.Repository;
 
@@ -11,20 +12,17 @@ public class BookRepository(KantarBooksContext context) : IBookRepository, IDisp
     public IEnumerable<Book> GetBooks() {
         return _context.Books.ToList();
     }
-    
+
+    public Book? GetBookByCode(string bookCode) {
+        return _context.Books.FirstOrDefault(b => b.Code == bookCode);
+    }
+
     public Book? AddOrUpdateBook(Book book) {
-        throw new NotImplementedException();
+        return _context.Books.Update(book).Entity;
     }
 
-    public Book? BorrowBook(string bookCode, string userCode) {
-        throw new NotImplementedException();
-    }
-    public Book? DeliverBook(string bookCode, string userCode) {
-        throw new NotImplementedException();
-    }
-
-    public Book? DeleteBook(string code) {
-        throw new NotImplementedException();
+    public Book? DeleteBook(Book book) {
+        return _context.Remove(book).Entity;
     }
 
     public void Dispose() {
