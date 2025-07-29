@@ -23,7 +23,7 @@ public class BookRepository(KantarBooksContext context) : IBookRepository, IDisp
             data = _context.Books.Add(book).Entity;
         }
         else {
-            data = _context.Books.Update(book).Entity;
+            _context.Entry(data).CurrentValues.SetValues(book);
         }
         _context.SaveChanges();
         return data;

@@ -8,6 +8,7 @@ export default class BookAPI {
   }
 
   static async AddOrUpdateBook(book){
+    console.log(book);
     return await API.Post(apiRoute, book);
   }
 
