@@ -46,6 +46,6 @@ The project includes unit tests for the following modules:
 * AgentController
 
 The testing framework used was MSTest, with Moq for mocking interfaces when needed.
-The test suit for BookRepository uses a local sqlite3 database. This was done to facilitate ORM testing. The suite resets the database to test default each time the suite is run.
+The test suite for BookRepository uses a local sqlite3 database. It resets the database to test default each run.
 
 To run the tests, navigate to the solution folder and run `dotnet test`
