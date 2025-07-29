@@ -79,7 +79,7 @@ const LibraryDashboard = () =>{
     BookCmd.DeliverBook(bookId, 
       (result) => {
         updateBookList(result)
-        setSuccessMessage("Book was successfully borrowed!");
+        setSuccessMessage("Book was successfully delivered!");
       }, 
       (e) => setFailureMessage(`There was an error delivering the book: ${e.message}`)
     )
