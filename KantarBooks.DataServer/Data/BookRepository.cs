@@ -1,12 +1,11 @@
 using KantarBooks.DataServer.Models;
-using Microsoft.EntityFrameworkCore.Scaffolding.Metadata;
 
 namespace KantarBooks.DataServer.Data;
 
 /// <summary>
 /// Handles operations and bookkeeping related to Book objects.
 /// </summary>
-public class BookRepository(KantarBooksContext context) : IBookRepository, IDisposable, IAsyncDisposable {
+public class BookRepository(KantarBooksContext context) : IBookRepository, IAsyncDisposable {
     private KantarBooksContext _context => context;
     
     public IEnumerable<Book> GetBooks() {
@@ -17,7 +16,7 @@ public class BookRepository(KantarBooksContext context) : IBookRepository, IDisp
         return _context.Books.FirstOrDefault(b => b.Id == id);
     }
 
-    public Book? AddOrUpdateBook(Book book) {
+    public Book AddOrUpdateBook(Book book) {
         var data = _context.Books.Find(book.Id);
         if (data == null) {
             data = _context.Books.Add(book).Entity;

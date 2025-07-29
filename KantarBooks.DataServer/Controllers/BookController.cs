@@ -1,6 +1,5 @@
 using KantarBooks.DataServer.Models;
 using KantarBooks.DataServer.Service;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KantarBooks.DataServer.Controllers;

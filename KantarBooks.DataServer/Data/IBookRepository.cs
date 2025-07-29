@@ -16,7 +16,7 @@ public interface IBookRepository : IDisposable{
     /// <summary>
     /// Returns the book associated with the given code.
     /// </summary>
-    /// <param name="bookCode">The code of the book to be found.</param>
+    /// <param name="id">The id of the book to be found.</param>
     /// <returns>The book data associated with the given code upon success, null
     /// otherwise.</returns>
     Book? GetBookById(long id);

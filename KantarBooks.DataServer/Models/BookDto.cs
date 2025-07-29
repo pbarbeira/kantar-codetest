@@ -27,5 +27,5 @@ public class BookDto {
     /// <summary>
     /// Indicates if the book has been borrowed.
     /// </summary>
-    public bool Borrowed { get; set; } = false;
+    public bool Borrowed { get; set; }
 }

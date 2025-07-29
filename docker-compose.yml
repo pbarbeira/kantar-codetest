@@ -12,28 +12,28 @@ services:
     volumes:
       - data:/var/opt/mssql
   
-  # server:
-  #   build:
-  #     context: .
-  #     dockerfile: KantarBooks.DataServer/Dockerfile
-  #   depends_on:
-  #     - db
-  #   environment:
-  #     - ASPNETCORE_URLS=http://+:5000;http://+:5001    
-  #   ports:
-  #     - "5000:5000"
-  #     - "5001:5001"
+  server:
+    build:
+      context: .
+      dockerfile: KantarBooks.DataServer/Dockerfile
+    depends_on:
+      - db
+    environment:
+      - ASPNETCORE_URLS=http://+:5000;http://+:5001    
+    ports:
+      - "5000:5000"
+      - "5001:5001"
 
-  # webui:
-  #   build:
-  #     context: ./KantarBooks.WebUI
-  #   ports:
-  #     - "5173:5173"
-  #   depends_on:
-  #     - server
-  #   environment:
-  #     - CHOKIDAR_USEPOLLING=true
-  #     - HOST=0.0.0.0
+  webui:
+    build:
+      context: ./KantarBooks.WebUI
+    ports:
+      - "5173:5173"
+    depends_on:
+      - server
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+      - HOST=0.0.0.0
 
 volumes:
   data:
