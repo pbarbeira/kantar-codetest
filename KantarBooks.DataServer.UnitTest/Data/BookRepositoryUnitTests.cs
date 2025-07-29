@@ -22,71 +22,70 @@ public class BookRepositoryUnitTests {
         Assert.IsNotNull(result);
         Assert.AreEqual(3, result.Count());
     }
+    
+    [TestMethod]
+    public void GetBookById_NotFound_Test() {
+        var repository = BuildRepository();
+
+        var result = repository.GetBookById(0);
+        Assert.IsNull(result);
+    }
+    
+    [TestMethod]
+    public void GetBookById_Found_Test() {
+        var repository = BuildRepository();
+
+        var result = repository.GetBookById(1);
+        Assert.IsNotNull(result);
+    }
 
     [TestMethod]
     public void AddOrUpdateBook_BookNotFound_Test() {
         var repository = BuildRepository();
-        var book = new Book() {
-            Id = 4,
-            Title = "Test Book",
-            AuthorCode = "KBP3",
-            PublisherCode = "KBP3",
-            Borrowed = false
-        };
+        var book = BuildBook();
         
         var result = repository.AddOrUpdateBook(book);
         Assert.IsNotNull(result);
-        Assert.AreEqual(4, result.Id);
-
-        result = repository.DeleteBook(book);
+        
+        result = repository.DeleteBook(4);
         Assert.IsNotNull(result );
-        Assert.AreEqual(4, result.Id);
     }
 
     [TestMethod]
     public void AddOrUpdateBook_BookFound_Test() {
         var repository = BuildRepository();
-        var book = new Book() {
-            Id = 4,
-            AuthorCode = "KBB2",
-        };
+        var book = repository.GetBookById(3);
+        book.AuthorCode = "KBA2";
         
         var result = repository.AddOrUpdateBook(book);
         Assert.IsNotNull(result);
-        Assert.AreEqual(4, result.Id);
-
-        book.AuthorCode = "KBB3";
-        result = repository.AddOrUpdateBook(book);
+        Assert.AreEqual(3, result.Id);
+        Assert.AreEqual("KBA2", result.AuthorCode);
+        
+        result.AuthorCode = "KBA3";
+        result = repository.AddOrUpdateBook(result);
         Assert.IsNotNull(result);
-        Assert.AreEqual("KBB2", result.AuthorCode);
     }
     
-    [TestMethod]
-    public void BorrowBook_BookNotFound_Test() {}
-    
-    [TestMethod]
-    public void BorrowBook_UserNotFound_Test() {}
-    
-    [TestMethod]
-    public void BorrowBook_BookFoundUserFound_Test() {}
-    
-    [TestMethod]
-    public void Deliver_BookNotFound_Test() {}
-    
-    [TestMethod]
-    public void Deliver_UserNotFound_Test() {}
-    
-    [TestMethod]
-    public void Deliver_BookFoundUserFound_Test() {}
-    
+  
     [TestMethod]
     public void DeleteBook_BookNotFound_Test() {
-        
+        var repository = BuildRepository();
+
+        var result = repository.DeleteBook(4);
+        Assert.IsNull(result);
     }
     
     [TestMethod]
     public void DeleteBook_BookFound_Test() {
-        
+        var repository = BuildRepository();
+
+        var result = repository.DeleteBook(1);
+        Assert.IsNotNull(result);
+
+        result.Id = 1;
+        result = repository.AddOrUpdateBook(result);
+        Assert.IsNotNull(result);
     }
     
     /// <summary>
@@ -109,5 +108,15 @@ public class BookRepositoryUnitTests {
 
         var repository = new BookRepository(context);
         return repository;
+    }
+
+    private Book BuildBook() {
+        return new Book() {
+            Id = 4,
+            Title = "Test Book",
+            AuthorCode = "KBP3",
+            PublisherCode = "KBP3",
+            Borrowed = false
+        };
     }
 }

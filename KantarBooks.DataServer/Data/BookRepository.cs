@@ -17,12 +17,18 @@ public class BookRepository(KantarBooksContext context) : IBookRepository, IDisp
     }
 
     public Book? AddOrUpdateBook(Book book) {
-        var result = _context.Books.Update(book).Entity;
-        _context.SaveChanges();
-        return result;
+        var data = _context.Books.Find(book.Id);
+        if (data == null) {
+            return _context.Books.Add(book).Entity;
+        }
+        return _context.Books.Update(book).Entity;
     }
 
-    public Book? DeleteBook(Book book) {
+    public Book? DeleteBook(long id) {
+        var book = _context.Books.Find(id);
+        if (book == null) {
+            return null;
+        }
         var result = _context.Remove(book).Entity;
         _context.SaveChanges();
         return result;

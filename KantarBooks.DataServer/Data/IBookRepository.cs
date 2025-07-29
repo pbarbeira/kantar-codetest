@@ -31,7 +31,7 @@ public interface IBookRepository : IDisposable{
     /// <summary>
     /// Deletes a book from the database.
     /// </summary>
-    /// <param name="book">The book to be deleted from the database.</param>
+    /// <param name="id">The id of book to be deleted from the database.</param>
     /// <returns>The book object returned from the dbContext call.</returns>
-    Book? DeleteBook(Book book);
+    Book? DeleteBook(long id);
 }

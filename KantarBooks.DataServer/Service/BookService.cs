@@ -43,7 +43,6 @@ public class BookService(IUnitOfWork unitOfWork) : IBookService {
     }
 
     public BookDto DeleteBook(long id) {
-        var book = GetBookById(id);
-        return TypeConverter.BookToDto(_unitOfWork.BookRepository.DeleteBook(book)!);
+        return TypeConverter.BookToDto(_unitOfWork.BookRepository.DeleteBook(id)!);
     }
 }
